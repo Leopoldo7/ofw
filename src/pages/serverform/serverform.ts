@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
-import {FORM_DIRECTIVES, Validators, FormBuilder, FormGroup, FormControl, AbstractControl} from '@angular/forms';
+import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl} from '@angular/forms';
 import {AlertController, NavController, LoadingController, NavParams, App, Events} from 'ionic-angular';
 
 @Component({
-  templateUrl: 'build/pages/serverform/serverform.html',
-  directives: [FORM_DIRECTIVES]
+  templateUrl: 'build/pages/serverform/serverform.html'
 })
 export class ServerFormPage {
   authForm: FormGroup;

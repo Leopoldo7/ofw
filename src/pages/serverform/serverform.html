@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar primary>
+  <ion-navbar color="primary">
     <ion-title>
       Signal K Server
     </ion-title>
@@ -16,7 +16,7 @@
     </ion-item>
     <div *ngIf="serverAddress.hasError('required') &amp;&amp; serverAddress.touched" style='color: red; padding-left: 15px;'>Server address is required</div>
     <div style='padding-top: 25px;'>
-      <button (click)="onSubmit(authForm.value)" [disabled]="!authForm.valid" block primary>Save</button><br/>
+      <button ion-button (click)="onSubmit(authForm.value)" [disabled]="!authForm.valid" block color="primary" >Save</button><br/>
     </div>
   </form>
 </ion-content>

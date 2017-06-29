@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-navbar primary>
+  <ion-navbar color="primary">
     <ion-title>Boat</ion-title>
     <ion-buttons end>
-      <button (click)='obtainServerAddrManually(true)'>
+      <button ion-button block (click)='obtainServerAddrManually(true)'>
         <ion-icon *ngIf='signalK.connected' style='color: green;' name='wifi'></ion-icon>
         <ion-icon *ngIf='!signalK.connected' style='color: red;' name='wifi'></ion-icon>
       </button>

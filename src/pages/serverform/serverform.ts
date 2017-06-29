@@ -3,7 +3,7 @@ import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl} from '
 import {AlertController, NavController, LoadingController, NavParams, App, Events} from 'ionic-angular';
 
 @Component({
-  templateUrl: 'build/pages/serverform/serverform.html'
+  templateUrl: './serverform.html'
 })
 export class ServerFormPage {
   authForm: FormGroup;

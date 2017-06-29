@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {NavController, LoadingController, AlertController, Events} from 'ionic-angular';
+import {LoadingController, AlertController, Events} from 'ionic-angular';
 import {$WebSocket} from 'angular2-websocket/angular2-websocket';
 import {ServerFormPage} from '../serverform/serverform';
 
@@ -15,8 +15,7 @@ export class SignalK {
   constructor(
     public events: Events,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController,
-    public navCtrl: NavController
+    public loadingCtrl: LoadingController
   ){
     this.events.subscribe('signalk:connect', (eventData) => {
       this.setServerAddress(eventData[0], eventData[1]);
@@ -40,7 +39,7 @@ export class SignalK {
           cordova.plugins.zeroconf.unwatch("_signalk-ws._tcp.local.");
           window.localStorage.removeItem('signalkServer');
           window.localStorage.removeItem('signalkServerPath');
-          this.obtainServerAddrManually();
+          //this.obtainServerAddrManually();
         });
       }, 4000);
 
@@ -70,9 +69,6 @@ export class SignalK {
     });
   }
 
-  obtainServerAddrManually() {
-    this.navCtrl.push(ServerFormPage);
-  }
 
   setServerAddress(address: string, path, callback: Function = null) {
     /*

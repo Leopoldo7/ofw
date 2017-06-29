@@ -20,6 +20,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AisPage } from '../pages/ais/ais';
 import { PanelPage } from '../pages/panel/panel';
 import { SensorPage } from '../pages/sensor/sensor';
+import { SignalK } from '../pages/signalk/signalk';
+import { ServerFormPage } from '../pages/serverform/serverform';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -43,7 +45,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AisPage,
     PanelPage,
     SensorPage,
-    TabsPage
+    TabsPage,
+    ServerFormPage
   ],
   imports: [
     BrowserModule, FormsModule,
@@ -67,11 +70,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AisPage,
     PanelPage,
     SensorPage,
-    TabsPage
+    TabsPage,
+    ServerFormPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    SignalK,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

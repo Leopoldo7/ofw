@@ -16,6 +16,10 @@ import { MapsPage } from '../pages/maps/maps';
 import { ApplicationPage } from '../pages/application/application';
 import { ToolsPage } from '../pages/tools/tools';
 import { TabsPage } from '../pages/tabs/tabs';
+import { AisPage } from '../pages/ais/ais';
+import { PanelPage } from '../pages/panel/panel';
+import { SensorPage } from '../pages/sensor/sensor';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,6 +39,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MapsPage,
     ApplicationPage,
     ToolsPage,
+    AisPage,
+    PanelPage,
+    SensorPage,
     TabsPage
   ],
   imports: [
@@ -56,6 +63,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MapsPage,
     ApplicationPage,
     ToolsPage,
+    AisPage,
+    PanelPage,
+    SensorPage,
     TabsPage
   ],
   providers: [

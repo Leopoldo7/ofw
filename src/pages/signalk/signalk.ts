@@ -17,8 +17,8 @@ export class SignalK {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController
   ){
-    this.events.subscribe('signalk:connect', (eventData) => {
-      this.setServerAddress(eventData[0], eventData[1]);
+    this.events.subscribe('signalk:connect', (ipAddress,path) => {
+      this.setServerAddress(ipAddress, path);
     });
   }
 

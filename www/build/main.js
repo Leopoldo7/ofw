@@ -55830,6 +55830,8 @@ AboutPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AisPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signalk_signalk__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__serverform_serverform__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -55841,19 +55843,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var AisPage = (function () {
-    function AisPage(navCtrl) {
+    function AisPage(navCtrl, signalK) {
         this.navCtrl = navCtrl;
+        this.signalK = signalK;
     }
+    AisPage.prototype.obtainServerAddrManually = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__serverform_serverform__["a" /* ServerFormPage */]);
+    };
     return AisPage;
 }());
 AisPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-ais',template:/*ion-inline-start:"/Users/leopoldovernellati/Documents/GitHub/ofw/src/pages/ais/ais.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>AIS</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  </ion-content>\n\n'/*ion-inline-end:"/Users/leopoldovernellati/Documents/GitHub/ofw/src/pages/ais/ais.html"*/
+        selector: 'page-ais',template:/*ion-inline-start:"/Users/leopoldovernellati/Documents/GitHub/ofw/src/pages/ais/ais.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>AIS</ion-title>\n    <ion-buttons end>\n      <button ion-button block (click)=\'obtainServerAddrManually(true)\'>\n        <ion-icon *ngIf=\'signalK.connected\' style=\'color: green;\' name=\'wifi\'></ion-icon>\n        <ion-icon *ngIf=\'!signalK.connected\' style=\'color: red;\' name=\'wifi\'></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  </ion-content>'/*ion-inline-end:"/Users/leopoldovernellati/Documents/GitHub/ofw/src/pages/ais/ais.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__signalk_signalk__["a" /* SignalK */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__signalk_signalk__["a" /* SignalK */]) === "function" && _b || Object])
 ], AisPage);
 
+var _a, _b;
 //# sourceMappingURL=ais.js.map
 
 /***/ }),
@@ -56478,6 +56487,8 @@ PanelPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SensorPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signalk_signalk__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__serverform_serverform__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56489,17 +56500,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var SensorPage = (function () {
-    function SensorPage(navCtrl) {
+    function SensorPage(navCtrl, signalK) {
         this.navCtrl = navCtrl;
+        this.signalK = signalK;
     }
+    SensorPage.prototype.obtainServerAddrManually = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__serverform_serverform__["a" /* ServerFormPage */]);
+    };
     return SensorPage;
 }());
 SensorPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-sensor',template:/*ion-inline-start:"/Users/leopoldovernellati/Documents/GitHub/ofw/src/pages/sensor/sensor.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>Sensor</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  </ion-content>\n\n'/*ion-inline-end:"/Users/leopoldovernellati/Documents/GitHub/ofw/src/pages/sensor/sensor.html"*/
+        selector: 'page-sensor',template:/*ion-inline-start:"/Users/leopoldovernellati/Documents/GitHub/ofw/src/pages/sensor/sensor.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>Sensor</ion-title>\n    <ion-buttons end>\n      <button ion-button block (click)=\'obtainServerAddrManually(true)\'>\n        <ion-icon *ngIf=\'signalK.connected\' style=\'color: green;\' name=\'wifi\'></ion-icon>\n        <ion-icon *ngIf=\'!signalK.connected\' style=\'color: red;\' name=\'wifi\'></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  </ion-content>'/*ion-inline-end:"/Users/leopoldovernellati/Documents/GitHub/ofw/src/pages/sensor/sensor.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2__signalk_signalk__["a" /* SignalK */]])
 ], SensorPage);
 
 //# sourceMappingURL=sensor.js.map

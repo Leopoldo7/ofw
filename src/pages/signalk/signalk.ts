@@ -81,12 +81,12 @@ export class SignalK {
     window.localStorage.setItem('signalkServer', address);
     window.localStorage.setItem('signalkServerPath', path);
     let wsServerPath = 'ws://' + address + path +
-                       '?subscribe=all&stream=delta';
+                       '?subscribe=all';
     setTimeout( () => {
       this.startWebsocketConnection(wsServerPath);
       if (callback)
         callback();
-    }, 500);
+    }, 5000);
   }
 
   startWebsocketConnection(wsServerPath) {

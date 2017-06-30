@@ -1,7 +1,7 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import {Component, ViewChild, ElementRef} from '@angular/core';
 import {Platform, Events} from 'ionic-angular';
-import { NavController } from 'ionic-angular';
 import {SignalK} from '../signalk/signalk';
+import { NavController } from 'ionic-angular';
 import {ServerFormPage} from '../serverform/serverform';
 
 declare var google;
@@ -10,18 +10,19 @@ declare var google;
   selector: 'page-ais',
   templateUrl: 'ais.html'
 })
+
 export class AisPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   vessel: any = {};
-
+  
   constructor(
-  platform: Platform,
-  public events: Events,
-  public navCtrl: NavController,
-  public signalK: SignalK
-  ){
-  platform.ready().then( () => {
+    platform: Platform,
+    public events: Events,
+    public signalK: SignalK,
+    public navCtrl: NavController
+  ) {
+    platform.ready().then( () => {
       this.initMap();
 
       this.map.addListener('zoom_changed', () => {
@@ -236,10 +237,5 @@ export class AisPage {
       }
     }
   }
-
-  obtainServerAddrManually() {
-    this.navCtrl.push(ServerFormPage);
-  }
-
 }
 

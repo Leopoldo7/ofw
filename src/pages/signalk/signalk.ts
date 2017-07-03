@@ -11,6 +11,8 @@ export class SignalK {
   selfId: string;
   private ws: any = null;
   private timeout: any;
+  private count = 0;
+  private MAX_TENTATIVI = 5;
 
   constructor(
     public events: Events,
@@ -82,11 +84,7 @@ export class SignalK {
     window.localStorage.setItem('signalkServerPath', path);
     let wsServerPath = 'ws://' + address + path +
                        '?subscribe=all';
-    setTimeout( () => {
-      this.startWebsocketConnection(wsServerPath);
-      if (callback)
-        callback();
-    }, 5000);
+    this.startWebsocketConnection(wsServerPath);
   }
 
   startWebsocketConnection(wsServerPath) {
@@ -98,7 +96,13 @@ export class SignalK {
     canceled.
     */
     this.timeout = setTimeout( () => {
-      this.startWebsocketConnection(wsServerPath);
+      this.count++;
+      if(this.count == this.MAX_TENTATIVI){
+        clearTimeout(this.timeout);
+        this.timeout = null;
+      } else {
+        this.startWebsocketConnection(wsServerPath);
+      }
     }, 30000);
 
     if (this.ws == null) {
@@ -117,7 +121,7 @@ export class SignalK {
         this.connected = false;
         this.ws.close(true);
         // Upon close of connection, try to reconnect in 10 seconds
-        setTimeout( () => this.startWebsocketConnection(wsServerPath), 10000);
+        //setTimeout( () => this.startWebsocketConnection(wsServerPath), 10000);
         this.events.publish('ws:close', 1);
       });
 
@@ -125,7 +129,7 @@ export class SignalK {
         this.connected = false;
         this.ws.close(true);
         // Upon close of connection, try to reconnect in 10 seconds
-        setTimeout( () => this.startWebsocketConnection(wsServerPath), 10000);
+        //setTimeout( () => this.startWebsocketConnection(wsServerPath), 10000);
         this.events.publish('ws:error', 1);
       });
 

@@ -30,6 +30,5 @@ export class PanelPage {
       console.info("Arrivato un dato")
       console.info(jsonData)
   }
-
 }
 

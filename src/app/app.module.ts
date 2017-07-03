@@ -23,6 +23,7 @@ import { SensorPage } from '../pages/sensor/sensor';
 import { SignalK } from '../pages/signalk/signalk';
 import { ServerFormPage } from '../pages/serverform/serverform';
 
+import {RadialGaugeComponent, LinearGaugeComponent} from '../../node_modules/ng-canvas-gauges/component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -46,7 +47,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PanelPage,
     SensorPage,
     TabsPage,
-    ServerFormPage
+    ServerFormPage,
+    RadialGaugeComponent
   ],
   imports: [
     BrowserModule, FormsModule,

@@ -47,7 +47,7 @@ export class PanelPage {
             if(json.updates[i].values){
               for(var k in json.updates[i].values){
                 var curr = json.updates[i].values[k];
-                if(curr.path === "propulsion.1.transmission.oilPressure"){
+                if(curr.path === "environment.wind.speedApparent"){
                     this.oilPressureValuePropulsione1 = curr.value/1000;
                 } else if(curr.path === "propulsion.0.transmission.oilPressure"){
                     this.oilPressureValuePropulsione0 = curr.value/1000;

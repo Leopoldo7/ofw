@@ -11,9 +11,8 @@
 </ion-header>
 
 <ion-content padding="true" style="background-color: black;">
-  
-  <div style="width:100%;height: 200px;">
-      <div>
+  <ion-slides>
+  <ion-slide>
         <radial-gauge
           width="300"
           height="300"
@@ -49,19 +48,17 @@
           color-border-middle-end="#111"
           color-border-inner="#111"
           color-border-inner-end="#333"
-          color-needle-shadow-down="#333"
-          color-needle-circle-outer="#333"
-          color-needle-circle-outer-end="#111"
-          color-needle-circle-inner="#111"
-          color-needle-circle-inner-end="#222"
+          color-needle-shadow-down="red"
+          color-needle-circle-outer="red"
+          color-needle-circle-outer-end="red"
+          color-needle-circle-inner="red"
+          color-needle-circle-inner-end="red"
           value-box-border-radius="0"
           color-value-box-rect="#222"
           color-value-box-rect-end="#333"
-          [attr.value]="oilPressureValuePropulsione0"
-        ></radial-gauge>
-      </div>
+          [attr.value]="oilPressureValuePropulsione0">
+          </radial-gauge>
       
-      <div>
         <radial-gauge
           width="300"
           height="300"
@@ -99,19 +96,17 @@
           color-border-middle-end="#111"
           color-border-inner="#111"
           color-border-inner-end="#333"
-          color-needle-shadow-down="#333"
-          color-needle-circle-outer="#333"
-          color-needle-circle-outer-end="#111"
-          color-needle-circle-inner="#111"
-          color-needle-circle-inner-end="#222"
+          color-needle-shadow-down="red"
+          color-needle-circle-outer="red"
+          color-needle-circle-outer-end="red"
+          color-needle-circle-inner="red"
+          color-needle-circle-inner-end="red"
           value-box-border-radius="0"
           color-value-box-rect="#222"
           color-value-box-rect-end="#333" 
-          [attr.value]="oilPressureValuePropulsione1"
-        ></radial-gauge>
-    </div>
+          [attr.value]="windSpeed">
+          </radial-gauge>
 
-    <div>
         <radial-gauge
           width="300"
           height="300"
@@ -147,27 +142,55 @@
           color-border-middle-end="#111"
           color-border-inner="#111"
           color-border-inner-end="#333"
-          color-needle-shadow-down="#333"
-          color-needle-circle-outer="#333"
-          color-needle-circle-outer-end="#111"
-          color-needle-circle-inner="#111"
-          color-needle-circle-inner-end="#222"
+          color-needle-shadow-down="red"
+          color-needle-circle-outer="red"
+          color-needle-circle-outer-end="red"
+          color-needle-circle-inner="red"
+          color-needle-circle-inner-end="red"
           value-box-border-radius="0"
           color-value-box-rect="#222"
           color-value-box-rect-end="#333" 
-          [attr.value]="oilPressureValuePropulsione1"
-        ></radial-gauge>
-    </div>
+          [attr.value]="oilPressureValuePropulsione1">
+          </radial-gauge>
 
 
+          <radial-gauge
+          width="300"
+          height="300"
+          min-value="-150"
+          max-value="180"
+          major-ticks="[-150,-120,-90,-60,-30,0,30,60,90,120,150,180]"
+          minor-ticks="2"
+          stroke-ticks="false"
+          highlights='[ {"from": -60, "to": -30, "color": "red"},
+              {"from": 30, "to": 60, "color": "green"} ]'
+          ticks-angle="388"
+          start-angle="1"
+          color-major-ticks="#ddd"
+          color-minor-ticks="#ddd"
+          color-title="white"
+          color-units="white"
+          color-numbers="white"
+          color-plate="black"
+          border-shadow-width="0"
+          borders="false"
+          needle-type="arrow"
+          needle-width="15"
+          color-needle="white"
+          color-needle-end="white"
+          color-border-inner="yellow"
+          color-needle-shadow-down="white"
+          color-needle-circle-outer="white"
+          color-needle-circle-outer-end="white"
+          color-needle-circle-inner="white"
+          color-needle-circle-inner-end="white"
+          [attr.value]="oilPressureValuePropulsione1">
+          </radial-gauge>
+
+</ion-slide>
+</ion-slides>
 
 
-
-
-
-
-
-  </div>
 
 </ion-content>
 

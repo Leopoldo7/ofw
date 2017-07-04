@@ -9,8 +9,9 @@ import {ServerFormPage} from '../serverform/serverform';
 })
 export class PanelPage {
 
-  @Input() oilPressureValuePropulsione0 = 0;
+  @Input() windSpeed = 0;
   @Input() oilPressureValuePropulsione1 = 0;
+           
 
 
   constructor(
@@ -35,29 +36,31 @@ export class PanelPage {
       console.info(jsonData)
       if(jsonData){
         jsonData = JSON.parse(jsonData);
-        this.handleOilPressure(jsonData);
+        this.handleWindSpeed(jsonData);
       
       }
   }
 
-  handleOilPressure(json){
+  handleWindSpeed(json){
     if(json){
        if(json.updates){
           for(var i in json.updates){
             if(json.updates[i].values){
               for(var k in json.updates[i].values){
                 var curr = json.updates[i].values[k];
-                if(curr.path === "environment.wind.speedApparent"){
-                    this.oilPressureValuePropulsione1 = curr.value/1000;
-                } else if(curr.path === "propulsion.0.transmission.oilPressure"){
-                    this.oilPressureValuePropulsione0 = curr.value/1000;
+                if(curr.path === "environment.wind.speedTrue"){
+                    this.windSpeed = curr.value;
                 }
               }
             }
           }
        }
     }
-    
   }
+
+
+
+
+
 }
 

@@ -101,9 +101,8 @@
           color-needle-circle-outer-end="red"
           color-needle-circle-inner="red"
           color-needle-circle-inner-end="red"
-          value-box-border-radius="0"
-          color-value-box-rect="#222"
-          color-value-box-rect-end="#333" 
+          value-box-border-radius="0" 
+          value-box="false"
           [attr.value]="windSpeed">
           </radial-gauge>
 
@@ -160,11 +159,11 @@
           min-value="-150"
           max-value="180"
           major-ticks="[-150,-120,-90,-60,-30,0,30,60,90,120,150,180]"
-          minor-ticks="2"
+          minor-ticks="0"
           stroke-ticks="false"
           highlights='[ {"from": -60, "to": -30, "color": "red"},
               {"from": 30, "to": 60, "color": "green"} ]'
-          ticks-angle="388"
+          ticks-angle="390"
           start-angle="1"
           color-major-ticks="#ddd"
           color-minor-ticks="#ddd"
@@ -184,6 +183,7 @@
           color-needle-circle-outer-end="white"
           color-needle-circle-inner="white"
           color-needle-circle-inner-end="white"
+          value-box="false"
           [attr.value]="oilPressureValuePropulsione1">
           </radial-gauge>
 

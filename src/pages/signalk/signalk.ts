@@ -87,12 +87,12 @@ export class SignalK {
         this.events.publish('ws:message', message.data, this.connected);
       }, {filter: '*', autoApply: false});
     }
-    this.ws.connect();
+    //this.ws.connect();
   }
 
   closeConnection(){
     if (this.ws != null) {
-      this.ws.close(true);
+      this.ws.close(false);
       this.ws = null;
       
       this.connected = false;

@@ -10,7 +10,8 @@ import {ServerFormPage} from '../serverform/serverform';
 export class PanelPage {
 
   @Input() windSpeed = 0;
-  @Input() oilPressureValuePropulsione1 = 0;
+  @Input() battery = 0;
+  @Input() temperature = 0;
            
 
 
@@ -32,11 +33,13 @@ export class PanelPage {
 
 
   handleData(jsonData){
-      console.info("Arrivato un dato")
-      console.info(jsonData)
+      //console.info("Arrivato un dato")
+      //console.info(jsonData)
       if(jsonData){
         jsonData = JSON.parse(jsonData);
         this.handleWindSpeed(jsonData);
+        //this.handlerBattery(jsonData);
+        //this.handlerTemperature(jsonData);
       
       }
   }
@@ -50,6 +53,10 @@ export class PanelPage {
                 var curr = json.updates[i].values[k];
                 if(curr.path === "environment.wind.speedTrue"){
                     this.windSpeed = curr.value;
+                } else if(curr.path === "environment.outside.temperature"){
+                    this.temperature = curr.value;
+                } else if(curr.path === "electrical.batteries.0.voltage"){
+                    this.battery = curr.value;
                 }
               }
             }
@@ -57,6 +64,7 @@ export class PanelPage {
        }
     }
   }
+
 
 
 

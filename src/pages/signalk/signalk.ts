@@ -3,8 +3,6 @@ import {LoadingController, AlertController, Events} from 'ionic-angular';
 import {$WebSocket} from 'angular2-websocket/angular2-websocket';
 import {ServerFormPage} from '../serverform/serverform';
 
-declare var cordova;
-
 @Injectable()
 export class SignalK {
   connected: boolean = false;
@@ -23,54 +21,6 @@ export class SignalK {
       this.setServerAddress(ipAddress, path);
     });
   }
-
-  start(successCallback: Function=null) {
-    let loading = this.loadingCtrl.create({
-      content: 'Looking for a Signal K Server'
-    });
-    loading.present().then( () => {
-      // Others can signal us to change the server we are using
-      /*
-      We will look for a Signal K Server mDNS advertisement for 4 
-      seconds, then ask the user to enter server address manually.
-
-      If mDNS response is received, this timeout will be canceled.
-      */
-      let timeout = setTimeout( () => {
-        loading.dismiss().then( () => {
-          cordova.plugins.zeroconf.unwatch("_signalk-ws._tcp.local.");
-          window.localStorage.removeItem('signalkServer');
-          window.localStorage.removeItem('signalkServerPath');
-          //this.obtainServerAddrManually();
-        });
-      }, 4000);
-
-      cordova.plugins.zeroconf.watch("_signalk-ws._tcp.local.", (result) => {
-        loading.dismiss().then( () => {
-          for (let i=0;i<result.service.addresses.length;i++) {
-            // Skip IPv6 addresses
-            let wsServer = result.service.addresses[i];
-            if (wsServer.indexOf(':') != -1)
-              continue;
-            clearTimeout(timeout);   // Cancel timeout
-            let addresses = result.service.addresses;
-            let wsPort = result.service.port;
-            window.localStorage.setItem('signalkServer', wsServer + ':' + wsPort);
-            let signalKServerPath = '/signalk/v1/stream';
-            window.localStorage.setItem('signalkServerPath', signalKServerPath);
-            let wsServerPath = 'ws://' + wsServer + ':' + wsPort +
-                                signalKServerPath + '?subscribe=all&stream=delta';
-            setTimeout ( () => this.startWebsocketConnection(wsServerPath), 1000);
-            cordova.plugins.zeroconf.unwatch("_signalk-ws._tcp.local.");
-            if (successCallback)
-              successCallback();
-            break;
-          }
-        });
-      });
-    });
-  }
-
 
   setServerAddress(address: string, path, callback: Function = null) {
     /*
@@ -139,4 +89,15 @@ export class SignalK {
     }
     this.ws.connect();
   }
+
+  closeConnection(){
+    if (this.ws != null) {
+      this.ws.close(true);
+      this.ws = null;
+      
+      this.connected = false;
+    }
+  }
+
+
 }

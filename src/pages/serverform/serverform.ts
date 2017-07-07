@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl} from '@angular/forms';
 import {AlertController, NavController, LoadingController, NavParams, App, Events} from 'ionic-angular';
+import {SignalK} from '../signalk/signalk';
 
 @Component({
   templateUrl: './serverform.html'
@@ -14,7 +15,8 @@ export class ServerFormPage {
     fb: FormBuilder,
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
-    public events: Events
+    public events: Events,
+    public signalk:SignalK
   ) {
     let signalKServer = window.localStorage.getItem('signalkServer') || '';
     let signalKServerPath = window.localStorage.getItem('signalkServerPath') ||
@@ -34,12 +36,16 @@ export class ServerFormPage {
       let loading = this.loadingCtrl.create({
         duration: 1000
       });
-      loading.present().then( () => {
+      //loading.present().then( () => {
         this.events.publish('signalk:connect',
                             value.serverAddress,
                             value.serverPath);
         this.navCtrl.pop(); 
-      });
+      //});
     }
-  } 
+  }
+
+  disconnettiWS(){
+    this.signalk.closeConnection();
+  }
 }

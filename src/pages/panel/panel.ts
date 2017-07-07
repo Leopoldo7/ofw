@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
 import {SignalK} from '../signalk/signalk';
 import {ServerFormPage} from '../serverform/serverform';
@@ -18,14 +18,12 @@ export class PanelPage {
   constructor(
     public navCtrl: NavController,
     public signalK: SignalK,
-    private events: Events
+    public events: Events
   ){
     this.events.subscribe('ws:message', (jsonData) => {
       this.handleData(jsonData);
     });
-
   }
-
 
   obtainServerAddrManually() {
     this.navCtrl.push(ServerFormPage);
@@ -33,7 +31,7 @@ export class PanelPage {
 
 
   handleData(jsonData){
-      //console.info("Arrivato un dato")
+     //console.info("Arrivato un dato")
       //console.info(jsonData)
       if(jsonData){
         jsonData = JSON.parse(jsonData);
@@ -51,9 +49,9 @@ export class PanelPage {
             if(json.updates[i].values){
               for(var k in json.updates[i].values){
                 var curr = json.updates[i].values[k];
-                if(curr.path === "environment.wind.speedTrue"){
+                if(curr.path === "navigation.courseOverGroundTrue"){ //environment.wind.speedTrue
                     this.windSpeed = curr.value;
-                } else if(curr.path === "environment.outside.temperature"){
+                } else if(curr.path === "navigation.courseOverGroundTrue"){//environment.outside.temperature
                     this.temperature = curr.value;
                 } else if(curr.path === "electrical.batteries.0.voltage"){
                     this.battery = curr.value;
@@ -64,11 +62,6 @@ export class PanelPage {
        }
     }
   }
-
-
-
-
-
 
 }
 

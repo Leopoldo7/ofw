@@ -36,8 +36,7 @@ export class PanelPage {
       if(jsonData){
         jsonData = JSON.parse(jsonData);
         this.handleWindSpeed(jsonData);
-        //this.handlerBattery(jsonData);
-        //this.handlerTemperature(jsonData);
+        
       
       }
   }

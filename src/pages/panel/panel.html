@@ -12,6 +12,15 @@
 
 <ion-content padding="true" style="background-color: black;">
   <ion-slides pager color="primary">
+
+    <ng2-odometer 
+            [number]="windSpeed"
+            [value]="windSpeed"
+            [format]="'(dd).dd'"
+            [theme]="'plaza'"
+            ></ng2-odometer>
+
+
   <ion-slide>
         <radial-gauge
           height="335"

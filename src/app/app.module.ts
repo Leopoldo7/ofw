@@ -3,6 +3,7 @@ import { FormsModule }   from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Ng2OdometerModule } from 'ng2-odometer';
 
 import { AboutPage } from '../pages/about/about';
 import { DataPage } from '../pages/data/data';
@@ -51,7 +52,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     RadialGaugeComponent
   ],
   imports: [
-    BrowserModule, FormsModule,
+    BrowserModule, FormsModule, Ng2OdometerModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

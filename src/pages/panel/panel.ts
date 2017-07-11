@@ -12,6 +12,7 @@ export class PanelPage {
   @Input() windSpeed = 0;
   @Input() battery = 0;
   @Input() temperature = 0;
+  @Input() valoreInput: string = "10.00";
            
 
 

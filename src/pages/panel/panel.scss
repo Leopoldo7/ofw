@@ -1,0 +1,25 @@
+page-panel {
+
+    .odometer{
+        
+        width:  230px!important;//se 5 numeri
+        height: 50px!important;
+       
+        font-family: "Wallpoet", monospace!important; //Tipo di font
+        font-size: 2.5em!important;
+
+        background-color: #f8f9dc!important;
+
+    }
+
+    .odometer-digit {
+        width: 40px!important;
+        height:  50px!important;
+        color: black;
+    }
+
+    .odometer-digit-inner {
+        padding-top: 9px!important;
+    }
+
+}

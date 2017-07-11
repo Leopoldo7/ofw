@@ -25218,23 +25218,28 @@ ion-navbar.toolbar {
   width: 100%;
 }
 
-grid-basic-page ion-col div {
-  background-color: #000;
-  border: 1px solid #000;
-  border-radius: 2px;
-  padding: 5px;
-  text-align: center;
-}
-
-grid-basic-page p {
-  padding: 10px 0 0 10px !important;
-  margin: 0;
-}
-
 .alert-head {
   overflow: auto;
 }
 
 .alert-wrapper {
   min-width: 35%;
+}
+
+page-panel .odometer {
+  width: 230px !important;
+  height: 100px !important;
+  font-family: "Wallpoet", monospace !important;
+  font-size: 2.5em !important;
+  background-color: #f8f9dc !important;
+}
+
+page-panel .odometer-digit {
+  width: 40px !important;
+  height: 50px !important;
+  color: black;
+}
+
+page-panel .odometer-digit-inner {
+  padding-top: 9px !important;
 }

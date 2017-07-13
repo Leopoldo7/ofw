@@ -9,9 +9,12 @@ import {ServerFormPage} from '../serverform/serverform';
 })
 export class PanelPage {
 
+  @Input() courseover = 0;
+  @Input() speedover = 0;
+  @Input() depthbelowTransducer = 0;
+  @Input() magneticVariation = 0;
   @Input() windSpeed = 0;
-  @Input() battery = 0;
-  @Input() temperature = 0;
+
   @Input() valoreInput: string = "10.00";
            
 
@@ -49,12 +52,16 @@ export class PanelPage {
             if(json.updates[i].values){
               for(var k in json.updates[i].values){
                 var curr = json.updates[i].values[k];
-                if(curr.path === "navigation.courseOverGroundTrue"){ //environment.wind.speedTrue
+                if(curr.path === "navigation.courseOverGroundTrue"){ 
+                    this.courseover = curr.value;
+                } else if(curr.path === "navigation.speedOverGround"){
+                    this.speedover = curr.value;
+                } else if(curr.path === "depth.belowTransducer"){
+                    this.depthbelowTransducer = curr.value;
+                } else if(curr.path === "navigation.magneticVariation"){
+                    this.magneticVariation = curr.value;
+                } else if(curr.path === "environment.wind.speedApparent"){
                     this.windSpeed = curr.value;
-                } else if(curr.path === "navigation.courseOverGroundTrue"){//environment.outside.temperature
-                    this.temperature = curr.value;
-                } else if(curr.path === "electrical.batteries.0.voltage"){
-                    this.battery = curr.value;
                 }
               }
             }

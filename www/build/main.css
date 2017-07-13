@@ -25243,3 +25243,11 @@ page-panel .odometer-digit {
 page-panel .odometer-digit-inner {
   padding-top: 9px !important;
 }
+
+page-panel contenitore {
+  postion: relative;
+}
+
+page-panel #titolo {
+  position: relative;
+}

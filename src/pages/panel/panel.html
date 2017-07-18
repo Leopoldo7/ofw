@@ -13,38 +13,28 @@
 <ion-content padding="true" style="background-color: black;">
   <ion-slides pager color="primary">
 
-      <ion-slide><font color="white">NAVIGATION</font>
-      <div>
+      <ion-slide> <font color="white">NAVIGATION</font>
+          <div>
+            <div style="float:left;" id="contenitore">
+            <div id="titolo"><font color="white">HEADING(m)</font></div>
            <ng2-odometer
-            [number]="courseover"
-            [value]="courseover"
-            [format]="'(dd).dd'"
-            [theme]="'plaza'">
-           </ng2-odometer>
-
-            <ng2-odometer
-            [number]="speedover"
-            [value]="speedover"
+            [number]="windSpeed"
+            [value]="windSpeed"
             [format]="'(dd).dd'"
             [theme]="'plaza'"
             ></ng2-odometer>
-
-            <ng2-odometer
-            [number]="depthbelowTransducer"
-            [value]="depthbelowTransducer"
-            [format]="'(dd).dd'"
-            [theme]="'plaza'"
-            ></ng2-odometer>
-
+          
+            <div id="titolo"><font color="white">DEPTH</font></div>
             <ng2-odometer
             [number]="windSpeed"
             [value]="windSpeed"
             [format]="'(dd).dd'"
             [theme]="'plaza'"
             ></ng2-odometer>
-      </div>
+            </div>
 
-      <div>
+            <div style="float:left;" id="contenitore">
+            <div id="titolo"><font color="white">LIVEWELL</font></div>
             <ng2-odometer
             [number]="windSpeed"
             [value]="windSpeed"
@@ -52,6 +42,37 @@
             [theme]="'plaza'"
             ></ng2-odometer>
 
+            <div id="titolo"><font color="white">LIVEWELL</font></div>
+            <ng2-odometer
+            [number]="windSpeed"
+            [value]="windSpeed"
+            [format]="'(dd).dd'"
+            [theme]="'plaza'"
+            ></ng2-odometer>
+            </div>
+            </div>
+
+            <div>
+            <div style="float:left;" id="contenitore">
+            <div id="titolo"><font color="white">HEADING(m)</font></div>
+           <ng2-odometer
+            [number]="windSpeed"
+            [value]="windSpeed"
+            [format]="'(dd).dd'"
+            [theme]="'plaza'"
+            ></ng2-odometer>
+          
+            <div id="titolo"><font color="white">DEPTH</font></div>
+            <ng2-odometer
+            [number]="windSpeed"
+            [value]="windSpeed"
+            [format]="'(dd).dd'"
+            [theme]="'plaza'"
+            ></ng2-odometer>
+            </div>
+
+            <div style="float:left;" id="contenitore">
+            <div id="titolo"><font color="white">LIVEWELL</font></div>
             <ng2-odometer
             [number]="windSpeed"
             [value]="windSpeed"
@@ -59,6 +80,17 @@
             [theme]="'plaza'"
             ></ng2-odometer>
 
+            <div id="titolo"><font color="white">LIVEWELL</font></div>
+            <ng2-odometer
+            [number]="windSpeed"
+            [value]="windSpeed"
+            [format]="'(dd).dd'"
+            [theme]="'plaza'"
+            ></ng2-odometer>
+            </div>
+
+            <div style="float:left;" id="contenitore">
+            <div id="titolo"><font color="white">LIVEWELL</font></div>
             <ng2-odometer
             [number]="windSpeed"
             [value]="windSpeed"
@@ -66,39 +98,16 @@
             [theme]="'plaza'"
             ></ng2-odometer>
 
-      </div>
-
-      <div>
+            <div id="titolo"><font color="white">LIVEWELL</font></div>
             <ng2-odometer
             [number]="windSpeed"
             [value]="windSpeed"
             [format]="'(dd).dd'"
             [theme]="'plaza'"
             ></ng2-odometer>
-
-            <ng2-odometer
-            [number]="windSpeed"
-            [value]="windSpeed"
-            [format]="'(dd).dd'"
-            [theme]="'plaza'"
-            ></ng2-odometer>
-
-            <ng2-odometer
-            [number]="windSpeed"
-            [value]="windSpeed"
-            [format]="'(dd).dd'"
-            [theme]="'plaza'"
-            ></ng2-odometer>
-
-            <ng2-odometer
-            [number]="windSpeed"
-            [value]="windSpeed"
-            [format]="'(dd).dd'"
-            [theme]="'plaza'"
-            ></ng2-odometer>
-
-      </div>
-     </ion-slide>
+            </div>
+            </div>
+           </ion-slide>
 
         <ion-slide><font color="white">SAILING</font>
       <div>

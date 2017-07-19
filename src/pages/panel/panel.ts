@@ -30,6 +30,7 @@ export class PanelPage implements OnInit {
   public canvasTwd:any;
   public canvasTwD:any;
   public canvasTws:any;
+  public canvasPEP:any;
 
 
   @Input() valoreInput: string = "10.00";
@@ -238,7 +239,16 @@ export class PanelPage implements OnInit {
                lcdColor: steelseries.LcdColor.WHITE
             });
       
-
+        this.canvasPEP = new steelseries.DisplaySingle('canvasPEP', {
+            width: 200,
+            height: 100,
+            unitString: "m/s",
+            unitStringVisible: true,
+            headerString: "TWS",
+            lcdDecimals: 1,
+            headerStringVisible: true,
+            lcdColor: steelseries.LcdColor.WHITE
+        })
     }
 
 }

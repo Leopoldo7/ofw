@@ -19,7 +19,18 @@ export class PanelPage implements OnInit {
   @Input() windSpeed = 0;
 
   public canvasSOG:any;
-  public multiPosition:any;
+  public canvasPosition:any;
+  public canvasCOG:any;
+  public canvasDepth:any;
+  public canvasHeading:any;
+  public canvasHEADING:any;
+  public canvasSpeed:any;
+  public canvasAwa:any;
+  public canvasAws:any;
+  public canvasTwd:any;
+  public canvasTwD:any;
+  public canvasTws:any;
+
 
   @Input() valoreInput: string = "10.00";
            
@@ -62,20 +73,51 @@ export class PanelPage implements OnInit {
             if(json.updates[i].values){
               for(var k in json.updates[i].values){
                 var curr = json.updates[i].values[k];
-                if(curr.path === "navigation.courseOverGroundTrue"){ //environment.outside.temperature --> navigation.courseOverGroundTrue
-                    //this.courseover = curr.value;
+
+                if(curr.path === "navigation.speedOverGround"){ 
                     this.canvasSOG.setValue(curr.value); //Setta il valore di  SOG
-                    this.multiPosition.setValue(curr.value); // Setta il primo valore del Display con due parametri
-                    this.multiPosition.setAltValue(curr.value + 10)  // Setta il secondo valore del Display con due parametri
-                } else if(curr.path === "navigation.speedOverGround"){
-                    this.speedover = curr.value;
-                } else if(curr.path === "depth.belowTransducer"){
-                    this.depthbelowTransducer = curr.value;
-                } else if(curr.path === "navigation.magneticVariation"){
-                    this.magneticVariation = curr.value;
-                } else if(curr.path === "environment.wind.speedApparent"){
-                    this.windSpeed = curr.value;
+                } 
+
+                else if(curr.path === "navigation.position.latitude"){ //Setta il primo valore del Display con due parametri
+                    this.canvasPosition.setValue(curr.value);
                 }
+
+                else if(curr.path === "navigation.position.longitude"){ // Setta il secondo valore del Display con due parametri
+                    this.canvasPosition.setAltValue(curr.value)
+                } 
+
+                else if(curr.path === "navigation.courseOverGroundTrue"){ //Setta COG
+                    this.canvasCOG.setValue(curr.value);
+                } 
+
+                else if(curr.path === "depth.belowTransducer"){ //Setta Depth
+                    this.canvasDepth.setValue(curr.value);
+                }
+
+                else if(curr.path === "navigation.headingMagnetic"){ //Setta Heading
+                    this.canvasHeading.setValue(curr.value);
+                }
+
+                else if(curr.path === "environment.wind.speedApparent"){ //Setta Speed
+                    this.canvasSpeed.setValue(curr.value);
+                }
+
+                else if(curr.path === "environment.wind.angleApparent"){ //Setta Awa
+                    this.canvasAwa.setValue(curr.value);
+                }
+
+                else if(curr.path === "environment.wind.speedApparent"){ //Setta Aws
+                    this.canvasAws.setValue(curr.value);
+                }
+
+                else if(curr.path === "environment.wind.directionChangeAlarm"){ //Setta Twd
+                    this.canvasTwd.setValue(curr.value);
+                }
+
+                else if(curr.path === "navigation.speedThroughWater"){ //Setta Tws
+                    this.canvasTws.setValue(curr.value);
+                }
+
               }
             }
           }
@@ -86,26 +128,116 @@ export class PanelPage implements OnInit {
 
     initGadget(){
 
-      this.canvasSOG = new steelseries.DisplaySingle('canvasSOG', {
-               width: 150,
-               height: 50,
-               unitString: "m/s",
-               unitStringVisible: true,
-               headerString: "SOG",
-               lcdDecimals: 1,
-               headerStringVisible: true,
-               lcdColor: steelseries.LcdColor.BEIGE
-            });
-
-      this.multiPosition = new steelseries.DisplayMulti('canvasPosition', {
-          width: 150,
-          height: 50,
+      this.canvasPosition = new steelseries.DisplayMulti('canvasPosition', {
+          width: 400,
+          height: 150,
           headerString: "POSITION",
           headerStringVisible: true,
           unitString: "Lat/Lon",
           unitStringVisible: true,
-          lcdColor: steelseries.LcdColor.BEIGE
+          lcdColor: steelseries.LcdColor.WHITE
       })
+
+
+      this.canvasSOG = new steelseries.DisplaySingle('canvasSOG', {
+               width: 200,
+               height: 100,
+               unitString: "",
+               unitStringVisible: true,
+               headerString: "SOG",
+               lcdDecimals: 1,
+               headerStringVisible: true,
+               lcdColor: steelseries.LcdColor.WHITE
+            });
+
+      this.canvasCOG = new steelseries.DisplaySingle('canvasCOG', {
+               width: 200,
+               height: 100,
+               unitString: "m/s",
+               unitStringVisible: true,
+               headerString: "COG",
+               lcdDecimals: 1,
+               headerStringVisible: true,
+               lcdColor: steelseries.LcdColor.WHITE
+            });
+
+      this.canvasDepth = new steelseries.DisplaySingle('canvasDepth', {
+               width: 200,
+               height: 100,
+               unitString: "m/s",
+               unitStringVisible: true,
+               headerString: "Depth",
+               lcdDecimals: 1,
+               headerStringVisible: true,
+               lcdColor: steelseries.LcdColor.WHITE
+            });
+
+      this.canvasHeading = new steelseries.DisplaySingle('canvasHeading', {
+               width: 200,
+               height: 100,
+               unitString: "m/s",
+               unitStringVisible: true,
+               headerString: "Heading",
+               lcdDecimals: 1,
+               headerStringVisible: true,
+               lcdColor: steelseries.LcdColor.WHITE
+            });
+
+      this.canvasSpeed = new steelseries.DisplaySingle('canvasSpeed', {
+               width: 200,
+               height: 100,
+               unitString: "m/s",
+               unitStringVisible: true,
+               headerString: "Speed",
+               lcdDecimals: 1,
+               headerStringVisible: true,
+               lcdColor: steelseries.LcdColor.WHITE
+            });
+
+      this.canvasAwa = new steelseries.DisplaySingle('canvasAwa', {
+               width: 200,
+               height: 100,
+               unitString: "m/s",
+               unitStringVisible: true,
+               headerString: "Awa",
+               lcdDecimals: 1,
+               headerStringVisible: true,
+               lcdColor: steelseries.LcdColor.WHITE
+            });
+
+      this.canvasAws = new steelseries.DisplaySingle('canvasAws', {
+               width: 200,
+               height: 100,
+               unitString: "m/s",
+               unitStringVisible: true,
+               headerString: "Aws",
+               lcdDecimals: 1,
+               headerStringVisible: true,
+               lcdColor: steelseries.LcdColor.WHITE
+            });
+
+      this.canvasTwd = new steelseries.DisplaySingle('canvasTwd', {
+               width: 200,
+               height: 100,
+               unitString: "m/s",
+               unitStringVisible: true,
+               headerString: "Twd",
+               lcdDecimals: 1,
+               headerStringVisible: true,
+               lcdColor: steelseries.LcdColor.WHITE
+            });
+
+      this.canvasTws = new steelseries.DisplaySingle('canvasTws', {
+               width: 200,
+               height: 100,
+               unitString: "m/s",
+               unitStringVisible: true,
+               headerString: "TWS",
+               lcdDecimals: 1,
+               headerStringVisible: true,
+               lcdColor: steelseries.LcdColor.WHITE
+            });
+      
 
     }
 

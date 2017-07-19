@@ -15,7 +15,8 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/typings/index.d.ts"
+    "src/typings/index.d.ts",
+    "src/assets/libs/steelseries.js"
   ],
   "exclude": [
     "node_modules"

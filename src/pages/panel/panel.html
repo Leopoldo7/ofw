@@ -76,6 +76,8 @@
 
 
       <div>
+      <canvas id="canvasHEA" class="gauge-container"></canvas>
+      <canvas id="canvasTD" class="gauge-container"></canvas>
         <radial-gauge width="190" height="190" min-value="-90" max-value="90" major-ticks="[-90,-75,-60,-45,-30,-15,0,15,30,45,60,75,90]"
           minor-ticks="2" stroke-ticks="false" highlights='[ {"from": -60, "to": -30, "color": "red"},
               {"from": 30, "to": 60, "color": "green"} ]' ticks-angle="225" start-angle="67.5" color-major-ticks="#ddd"
@@ -87,28 +89,56 @@
           color-needle-circle-inner="red" color-needle-circle-inner-end="red" value-box-border-radius="0" color-value-box-rect="#222"
           color-value-box-rect-end="#333" value-box="false" [attr.value]="windSpeed">
         </radial-gauge>
+        <canvas id="canvasVMG" class="gauge-container"></canvas>
+        <canvas id="canvasTS" class="gauge-container"></canvas>
+      </div>
+    </ion-slide>
+
+
+   <ion-slide>
+      <font color="white">ENVIRONMENT</font>
+      <div>
+        <canvas id="canvasGroundWind" class="gauge-container"></canvas>
+        <canvas id="canvasAirPres" class="gauge-container"></canvas>
+        <canvas id="canvasWindChill" class="gauge-container"></canvas>
+        <canvas id="canvasAWDS" class="gauge-container"></canvas>
       </div>
 
-    
-    <canvas id="canvasPEP" class="gauge-container"></canvas>
-    </ion-slide>
-
-
-
-    <ion-slide>
-    </ion-slide>
-
-
-
-
-    <ion-slide>
+      <div>
+        <canvas id="canvasSet" class="gauge-container"></canvas>
+        <canvas id="canvasWaterTemp" class="gauge-container"></canvas>
+        <canvas id="canvasOut" class="gauge-container"></canvas>
+        <canvas id="canvasInt" class="gauge-container"></canvas>
+      </div>
     </ion-slide>
 
 
     <ion-slide>
+      <font color="white">FISHING</font>
+      <div>
+        <canvas id="canvasCOGSOG" class="gauge-container"></canvas>
+        <canvas id="canvasHEAD" class="gauge-container"></canvas>
+        <canvas id="canvasDEP" class="gauge-container"></canvas>
+        <canvas id="canvasLiveWell" class="gauge-container"></canvas>
+      </div>
+
+      <div>
+        <canvas id="canvasWpt" class="gauge-container"></canvas>
+        <canvas id="canvasDrift" class="gauge-container"></canvas>
+        <canvas id="canvasWT" class="gauge-container"></canvas>
+        <canvas id="canvasTime" class="gauge-container"></canvas>
+      </div>
     </ion-slide>
 
+
     <ion-slide>
+      <font color="white">DEPTH</font>
+      <div>
+        <canvas id="canvasSOGCOG" class="gauge-container"></canvas>
+        <canvas id="canvasDP" class="gauge-container"></canvas>
+        <canvas id="canvasHD" class="gauge-container"></canvas>
+        <canvas id="canvasWINFO" class="gauge-container"></canvas>
+      </div>
     </ion-slide>
 
 

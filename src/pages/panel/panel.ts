@@ -95,7 +95,8 @@ export class PanelPage implements OnInit {
                 var curr = json.updates[i].values[k];
 
                 if(curr.path === "navigation.speedOverGround"){ 
-                    this.canvasSOG.setValue(curr.value); //Setta il valore di  SOG
+                    this.canvasSOG.setValue(curr.value); 
+                    this.canvasVMG.setValue(curr.value);
                 } 
 
                 else if(curr.path === "navigation.position.latitude"){ //Setta il primo valore del Display con due parametri
@@ -112,50 +113,33 @@ export class PanelPage implements OnInit {
 
                 else if(curr.path === "depth.belowTransducer"){ //Setta Depth
                     this.canvasDepth.setValue(curr.value);
+                    this.canvasDEP.setValue(curr.value);
+                    this.canvasDP.setValue(curr.value);
                 }
 
                 else if(curr.path === "navigation.headingMagnetic"){ //Setta Heading
                     this.canvasHeading.setValue(curr.value);
+                    this.canvasHEA.setValue(curr.value);
                 }
 
                 else if(curr.path === "environment.wind.speedApparent"){ //Setta Speed
                     this.canvasSpeed.setValue(curr.value);
+                    this.canvasAws.setValue(curr.value);
                 }
 
                 else if(curr.path === "environment.wind.angleApparent"){ //Setta Awa
                     this.canvasAwa.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.wind.speedApparent"){ //Setta Aws
-                    this.canvasAws.setValue(curr.value);
+                    this.canvasGroundWind.setValue(curr.value);
                 }
 
                 else if(curr.path === "environment.wind.directionChangeAlarm"){ //Setta Twd
                     this.canvasTwd.setValue(curr.value);
+                    this.canvasTD.setValue(curr.value);
                 }
 
                 else if(curr.path === "navigation.speedThroughWater"){ //Setta Tws
                     this.canvasTws.setValue(curr.value);
-                }
-
-                else if(curr.path === "navigation.headingMagnetic"){ //Setta HEA(m)
-                    this.canvasHEA.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.wind.directionChangeAlarm"){ //Setta TD
-                    this.canvasTD.setValue(curr.value);
-                }
-
-                else if(curr.path === "navigation.speedThroughWater"){ //Setta TS
                     this.canvasTS.setValue(curr.value);
-                }
-
-                else if(curr.path === "navigation.speedOverGround"){ //Setta VMG
-                    this.canvasVMG.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.wind.angleApparent"){ //Setta GroundWind
-                    this.canvasGroundWind.setValue(curr.value);
                 }
 
                 else if(curr.path === ""){ //Setta AirPres
@@ -164,6 +148,15 @@ export class PanelPage implements OnInit {
 
                 else if(curr.path === "environment.water.temperature"){ //Setta WindChill
                     this.canvasWindChill.setValue(curr.value);
+                    this.canvasWaterTemp.setValue(curr.value);
+                    this.canvasOut.setValue(curr.value);
+                    this.canvasInt.setValue(curr.value);
+                    this.canvasCOGSOG.setValue(curr.value);
+                    this.canvasLiveWell.setValue(curr.value);
+                    this.canvasWpt.setValue(curr.value);
+                    this.canvasDrift.setValue(curr.value);
+                    this.canvasWT.setValue(curr.value);
+                    this.canvasSOGCOG.setValue(curr.value);
                 }
 
                 else if(curr.path === ""){ //Setta AWDS
@@ -174,60 +167,13 @@ export class PanelPage implements OnInit {
                     this.canvasSet.setValue(curr.value);
                 }
 
-                else if(curr.path === "environment.water.temperature"){ //Setta WaterTemp
-                    this.canvasWaterTemp.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.water.temperaturer"){ //Setta Out
-                    this.canvasOut.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.water.temperature"){ //Setta Int
-                    this.canvasInt.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.water.temperature"){ // patherrato
-                    this.canvasCOGSOG.setValue(curr.value);
-                }
-
                 else if(curr.path === "steering.autopilot.target.headingMagnetic"){ 
                     this.canvasHEAD.setValue(curr.value);
-                }
-
-                else if(curr.path === "depth.belowTransducer"){
-                    this.canvasDEP.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.water.temperature"){ // patherrato
-                    this.canvasLiveWell.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.water.temperature"){ 
-                    this.canvasWpt.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.water.temperature"){ 
-                    this.canvasDrift.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.water.temperaturer"){ 
-                    this.canvasWT.setValue(curr.value);
+                    this.canvasHD.setValue(curr.value);
                 }
 
                 else if(curr.path === "navigation.datetime"){ 
                     this.canvasTime.setValue(curr.value);
-                }
-
-                else if(curr.path === "environment.water.temperature"){ 
-                    this.canvasSOGCOG.setValue(curr.value);
-                }
-
-                else if(curr.path === "depth.belowTransducer"){ 
-                    this.canvasDP.setValue(curr.value);
-                }
-
-                else if(curr.path === "steering.autopilot.target.headingMagnetic"){ 
-                    this.canvasHD.setValue(curr.value);
                 }
 
                 else if(curr.path === ""){ 

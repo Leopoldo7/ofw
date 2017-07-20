@@ -8,6 +8,7 @@ import { HomePage } from '../home/home';
 import { AisPage } from '../ais/ais';
 import { PanelPage } from '../panel/panel';
 import { SensorPage } from '../sensor/sensor';
+import { MapsPage } from '../maps/maps';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class TabsPage {
   tab4Root = PanelPage;
   tab5Root = SensorPage;
   tab6Root = AisPage;
+  tab9Root = MapsPage;
   tab7Root = SetupPage;
   tab8Root = AboutPage;
 

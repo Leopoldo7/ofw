@@ -54,6 +54,11 @@ export class PanelPage implements OnInit {
   public canvasHD:any;
   public canvasWINFO:any;
 
+  public canvasGaugesTrue;
+  public canvasGaugesTondo;
+  public canvasGaugesSpeed;
+  public canvasGaugesPress;
+
           
 
   constructor(
@@ -104,10 +109,10 @@ export class PanelPage implements OnInit {
                 }
 
                 else if(curr.path === "navigation.position.longitude"){ // Setta il secondo valore del Display con due parametri
-                    this.canvasPosition.setAltValue(curr.value)
+                    this.canvasPosition.setAltValue(curr.value +10)
                 } 
 
-                else if(curr.path === "navigation.courseOverGroundTrue"){ //Setta COG
+                else if(curr.path === "navigation.courseOverGroundTrue"){
                     this.canvasCOG.setValue(curr.value);
                 } 
 
@@ -117,27 +122,27 @@ export class PanelPage implements OnInit {
                     this.canvasDP.setValue(curr.value);
                 }
 
-                else if(curr.path === "navigation.headingMagnetic"){ //Setta Heading
+                else if(curr.path === "navigation.headingMagnetic"){ 
                     this.canvasHeading.setValue(curr.value);
                     this.canvasHEA.setValue(curr.value);
                 }
 
-                else if(curr.path === "environment.wind.speedApparent"){ //Setta Speed
+                else if(curr.path === "environment.wind.speedApparent"){ 
                     this.canvasSpeed.setValue(curr.value);
                     this.canvasAws.setValue(curr.value);
                 }
 
-                else if(curr.path === "environment.wind.angleApparent"){ //Setta Awa
+                else if(curr.path === "environment.wind.angleApparent"){ 
                     this.canvasAwa.setValue(curr.value);
                     this.canvasGroundWind.setValue(curr.value);
                 }
 
-                else if(curr.path === "environment.wind.directionChangeAlarm"){ //Setta Twd
+                else if(curr.path === "environment.wind.directionChangeAlarm"){ 
                     this.canvasTwd.setValue(curr.value);
                     this.canvasTD.setValue(curr.value);
                 }
 
-                else if(curr.path === "navigation.speedThroughWater"){ //Setta Tws
+                else if(curr.path === "navigation.speedThroughWater"){ 
                     this.canvasTws.setValue(curr.value);
                     this.canvasTS.setValue(curr.value);
                 }
@@ -146,10 +151,9 @@ export class PanelPage implements OnInit {
                     this.canvasAirPres.setValue(curr.value);
                 }
 
-                else if(curr.path === "environment.water.temperature"){ //Setta WindChill
+                else if(curr.path === "environment.water.temperature"){ 
                     this.canvasWindChill.setValue(curr.value);
                     this.canvasWaterTemp.setValue(curr.value);
-                    this.canvasOut.setValue(curr.value);
                     this.canvasInt.setValue(curr.value);
                     this.canvasCOGSOG.setValue(curr.value);
                     this.canvasLiveWell.setValue(curr.value);
@@ -159,11 +163,11 @@ export class PanelPage implements OnInit {
                     this.canvasSOGCOG.setValue(curr.value);
                 }
 
-                else if(curr.path === ""){ //Setta AWDS
-                    this.canvasAWDS.setValue(curr.value);
+                else if(curr.path === "environment.outside.temperature"){
+                    this.canvasOut.setValue(curr.value);
                 }
 
-                else if(curr.path === "navigation.racing.timePortDown"){ //Setta Set
+                else if(curr.path === "navigation.racing.timePortDown"){
                     this.canvasSet.setValue(curr.value);
                 }
 
@@ -369,7 +373,7 @@ export class PanelPage implements OnInit {
       this.canvasWindChill = new steelseries.DisplaySingle('canvasWindChill', {
                width: 200,
                height: 100,
-               unitString: "°",
+               unitString: "",
                unitStringVisible: true,
                headerString: "T.WindChillTemp.",
                lcdDecimals: 1,

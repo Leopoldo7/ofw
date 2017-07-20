@@ -46,7 +46,7 @@
           color-border-outer-end="#111" color-border-middle="#222" color-border-middle-end="#111" color-border-inner="#111"
           color-border-inner-end="#333" color-needle-shadow-down="red" color-needle-circle-outer="red" color-needle-circle-outer-end="red"
           color-needle-circle-inner="red" color-needle-circle-inner-end="red" value-box-border-radius="0" color-value-box-rect="#222"
-          color-value-box-rect-end="#333" value-box="false" [attr.value]="canvasSpeed">
+          color-value-box-rect-end="#333" value-box="false" [attr.value]="canvasGaugesTrue">
         </radial-gauge>
 
         <radial-gauge width="400" height="290" min-value="-150" max-value="180" major-ticks="[-150,-120,-90,-60,-30,0,30,60,90,120,150,180]"
@@ -58,7 +58,7 @@
           color-border-outer-end="#111" color-border-middle="#222" color-border-middle-end="#111" color-border-inner="#111"
           color-border-inner-end="#333" color-needle-shadow-down="red" color-needle-circle-outer="red" color-needle-circle-outer-end="red"
           color-needle-circle-inner="red" color-needle-circle-inner-end="red" value-box-border-radius="0" value-box="false"
-          [attr.value]="canvasSpeed">
+          [attr.value]="canvasGaugesTondo">
         </radial-gauge>
 
         <radial-gauge width="400" height="290" units="Kts" title="OpenFairWind" min-value="0" max-value="12" major-ticks="[0,1,2,3,4,5,6,7,8,9,10,11,12]"
@@ -70,7 +70,7 @@
           color-border-outer-end="#111" color-border-middle="#222" color-border-middle-end="#111" color-border-inner="#111"
           color-border-inner-end="#333" color-needle-shadow-down="red" color-needle-circle-outer="red" color-needle-circle-outer-end="red"
           color-needle-circle-inner="red" color-needle-circle-inner-end="red" value-box-border-radius="0" value-box="false"
-          [attr.value]="canvasSpeed">
+          [attr.value]="canvasGaugesSpeed">
         </radial-gauge>
       </div>
 
@@ -87,7 +87,7 @@
           color-border-outer-end="#111" color-border-middle="#222" color-border-middle-end="#111" color-border-inner="#111"
           color-border-inner-end="#333" color-needle-shadow-down="red" color-needle-circle-outer="red" color-needle-circle-outer-end="red"
           color-needle-circle-inner="red" color-needle-circle-inner-end="red" value-box-border-radius="0" color-value-box-rect="#222"
-          color-value-box-rect-end="#333" value-box="false" [attr.value]="windSpeed">
+          color-value-box-rect-end="#333" value-box="false" [attr.value]="canvasGaugesPress">
         </radial-gauge>
         <canvas id="canvasVMG" class="gauge-container"></canvas>
         <canvas id="canvasTS" class="gauge-container"></canvas>

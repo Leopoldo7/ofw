@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { SignalK } from '../signalk/signalk';
 import { ServerFormPage } from '../serverform/serverform';
@@ -15,11 +15,14 @@ declare var ol:any;
 export class MapsPage implements OnInit {
 
    public map:any;
-   public zoom:number = 15;
+   public zoom:number = 13;
    public imageMarker:string = 'assets/img/maps/ship.png';
    public fromProjection:string = "EPSG:4326";
    public toProjection:string = "EPSG:3857";
+   public maxMoviments:number = 200;
+   public countMoviments:number = this.maxMoviments;
 
+   
    public features = new ol.Collection();
 
 
@@ -90,24 +93,25 @@ export class MapsPage implements OnInit {
     //Prende la posizione attuale
     if(this.geolocation && this.geolocation.getTracking()){
      
-      /*var positionActual = this.geolocation.getPosition();
+      var positionActual = this.geolocation.getPosition();
       
       if(positionActual){
         this.view.setCenter([parseFloat(positionActual[0]), parseFloat(positionActual[1])]);
         this.view.setZoom(this.zoom);
-      }*/
-      var viewer = this.view;
+      }
+
+      /*var viewer = this.view;
       var zoommer = this.zoom;
       var fmProj = this.fromProjection;
       var toProj = this.toProjection;
-      /* NON so se va bene per una nave che va sempre in movimento */
+      
       this.geolocation.on('change', function() {
         
           var p = this.getPosition();
           viewer.setCenter(ol.proj.transform([p[0],p[1]], fmProj, toProj));
           viewer.setZoom(zoommer);
         
-      });
+      });*/
 
     }
 
@@ -138,8 +142,11 @@ export class MapsPage implements OnInit {
                         if(this.vectorSource.getFeatureById("mia_nave"))
                           this.vectorSource.removeFeature(this.vectorSource.getFeatureById("mia_nave"));
                         this.vectorSource.addFeature(feature);
-                        this.view.setCenter(ol.proj.transform([pos.longitude,pos.latitude], this.fromProjection, this.toProjection));
-                        this.view.setZoom(this.zoom);
+                        if(this.countMoviments == this.maxMoviments) {
+                          this.view.setCenter(ol.proj.transform([pos.longitude,pos.latitude], this.fromProjection, this.toProjection));
+                          this.view.setZoom(this.zoom);
+                          this.countMoviments = 0;
+                        }
                     }
                 }
               }

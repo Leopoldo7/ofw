@@ -521,6 +521,7 @@ export class PanelPage implements OnInit {
             headerString: "Time",
             lcdDecimals: 1,
             headerStringVisible: true,
+            valuesNumeric: false,
             lcdColor: steelseries.LcdColor.WHITE
         })
 

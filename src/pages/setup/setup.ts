@@ -7,6 +7,7 @@ import {GuiPage} from '../gui/gui';
 import {MapsPage} from '../maps/maps';
 import {ApplicationPage} from '../application/application';
 import {ToolsPage} from '../tools/tools';
+import {MasterPage} from '../master/master';
 
 @Component({
   selector: 'page-setup',
@@ -46,6 +47,10 @@ goToSetting(whoIs:string): void{
         }
         case 'Tools': {
             this.navCtr.push(ToolsPage);
+            break;
+        }
+        case 'Master': {
+            this.navCtr.push(MasterPage);
             break;
         }
         default : {

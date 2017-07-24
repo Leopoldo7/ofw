@@ -12,6 +12,11 @@ declare var steelseries:any;
 })
 export class PanelPage implements OnInit {
 
+@Input() canvasGaugesTrue=0;
+@Input() canvasGaugesTondo=0;
+@Input() canvasGaugesSpeed=0;
+@Input() canvasGaugesPress=0;
+
   
 
   public canvasSOG:any;
@@ -54,11 +59,6 @@ export class PanelPage implements OnInit {
   public canvasHD:any;
   public canvasWINFO:any;
 
-  public canvasGaugesTrue;
-  public canvasGaugesTondo;
-  public canvasGaugesSpeed;
-  public canvasGaugesPress;
-
           
 
   constructor(
@@ -86,10 +86,79 @@ export class PanelPage implements OnInit {
       if(jsonData){
         jsonData = JSON.parse(jsonData);
         this.handleWindSpeed(jsonData);
+        this.handlecanvasGaugesTrue(jsonData);
+        this.handlecanvasGaugesTondo(jsonData);
+        this.handlecanvasGaugesSpeed(jsonData);
+        this.handlecanvasGaugesPress(jsonData);
         
       
       }
   }
+
+
+
+  handlecanvasGaugesTrue(json){
+    if(json){
+       if(json.updates){
+          for(var i in json.updates){
+            if(json.updates[i].values){
+              for(var k in json.updates[i].values){
+                var curr = json.updates[i].values[k];
+                if(curr.path === "environment.wind.angleApparent"){
+                    this.canvasGaugesTrue = curr.value;
+                } 
+              }
+            }
+          }}}}
+
+  handlecanvasGaugesTondo(json){
+    if(json){
+       if(json.updates){
+          for(var i in json.updates){
+            if(json.updates[i].values){
+              for(var k in json.updates[i].values){
+                var curr = json.updates[i].values[k];
+                if(curr.path === "environment.wind.directionChangeAlarm"){
+                    this.canvasGaugesTondo = curr.value;
+                } 
+              }
+            }
+          }}}}
+
+    handlecanvasGaugesSpeed(json){
+    if(json){
+       if(json.updates){
+          for(var i in json.updates){
+            if(json.updates[i].values){
+              for(var k in json.updates[i].values){
+                var curr = json.updates[i].values[k];
+                if(curr.path === "environment.wind.speedApparent"){
+                    this.canvasGaugesSpeed = curr.value;
+                } 
+              }
+            }
+          }}}}
+
+    handlecanvasGaugesPress(json){
+    if(json){
+       if(json.updates){
+          for(var i in json.updates){
+            if(json.updates[i].values){
+              for(var k in json.updates[i].values){
+                var curr = json.updates[i].values[k];
+                if(curr.path === "environment.wind.speedApparent"){
+                    this.canvasGaugesPress = curr.value;
+                } 
+              }
+            }
+          }}}}
+
+
+
+
+
+
+
 
   handleWindSpeed(json){
     if(json){
@@ -219,7 +288,7 @@ export class PanelPage implements OnInit {
       this.canvasCOG = new steelseries.DisplaySingle('canvasCOG', {
                width: 200,
                height: 100,
-               unitString: "m/s",
+               unitString: "",
                unitStringVisible: true,
                headerString: "COG",
                lcdDecimals: 1,
@@ -230,7 +299,7 @@ export class PanelPage implements OnInit {
       this.canvasDepth = new steelseries.DisplaySingle('canvasDepth', {
                width: 200,
                height: 100,
-               unitString: "m/s",
+               unitString: "",
                unitStringVisible: true,
                headerString: "Depth",
                lcdDecimals: 1,
@@ -241,7 +310,7 @@ export class PanelPage implements OnInit {
       this.canvasHeading = new steelseries.DisplaySingle('canvasHeading', {
                width: 200,
                height: 100,
-               unitString: "m/s",
+               unitString: "",
                unitStringVisible: true,
                headerString: "Heading",
                lcdDecimals: 1,
@@ -252,7 +321,7 @@ export class PanelPage implements OnInit {
       this.canvasSpeed = new steelseries.DisplaySingle('canvasSpeed', {
                width: 200,
                height: 100,
-               unitString: "m/s",
+               unitString: "",
                unitStringVisible: true,
                headerString: "Speed",
                lcdDecimals: 1,
@@ -263,7 +332,7 @@ export class PanelPage implements OnInit {
       this.canvasAwa = new steelseries.DisplaySingle('canvasAwa', {
                width: 200,
                height: 100,
-               unitString: "m/s",
+               unitString: "",
                unitStringVisible: true,
                headerString: "Awa",
                lcdDecimals: 1,
@@ -274,7 +343,7 @@ export class PanelPage implements OnInit {
       this.canvasAws = new steelseries.DisplaySingle('canvasAws', {
                width: 200,
                height: 100,
-               unitString: "m/s",
+               unitString: "",
                unitStringVisible: true,
                headerString: "Aws",
                lcdDecimals: 1,
@@ -285,7 +354,7 @@ export class PanelPage implements OnInit {
       this.canvasTwd = new steelseries.DisplaySingle('canvasTwd', {
                width: 200,
                height: 100,
-               unitString: "m/s",
+               unitString: "",
                unitStringVisible: true,
                headerString: "Twd",
                lcdDecimals: 1,
@@ -296,7 +365,7 @@ export class PanelPage implements OnInit {
       this.canvasTws = new steelseries.DisplaySingle('canvasTws', {
                width: 200,
                height: 100,
-               unitString: "m/s",
+               unitString: "",
                unitStringVisible: true,
                headerString: "TWS",
                lcdDecimals: 1,
@@ -307,7 +376,7 @@ export class PanelPage implements OnInit {
         this.canvasHEA = new steelseries.DisplaySingle('canvasHEA', {
             width: 200,
             height: 100,
-            unitString: "m",
+            unitString: "",
             unitStringVisible: true,
             headerString: "HEADING(m)",
             lcdDecimals: 1,
@@ -318,7 +387,7 @@ export class PanelPage implements OnInit {
         this.canvasTD = new steelseries.DisplaySingle('canvasTD', {
             width: 200,
             height: 100,
-            unitString: "m/s",
+            unitString: "",
             unitStringVisible: true,
             headerString: "TWD",
             lcdDecimals: 1,
@@ -329,7 +398,7 @@ export class PanelPage implements OnInit {
         this.canvasTS = new steelseries.DisplaySingle('canvasTS', {
             width: 200,
             height: 100,
-            unitString: "m/s",
+            unitString: "",
             unitStringVisible: true,
             headerString: "TWS",
             lcdDecimals: 1,
@@ -340,7 +409,7 @@ export class PanelPage implements OnInit {
         this.canvasVMG = new steelseries.DisplaySingle('canvasVMG', {
             width: 200,
             height: 100,
-            unitString: "m/s",
+            unitString: "",
             unitStringVisible: true,
             headerString: "VMG",
             lcdDecimals: 1,
@@ -351,7 +420,7 @@ export class PanelPage implements OnInit {
         this.canvasGroundWind = new steelseries.DisplaySingle('canvasGroundWind', {
                width: 200,
                height: 100,
-               unitString: "t",
+               unitString: "",
                unitStringVisible: true,
                headerString: "Ground Wind(t)",
                lcdDecimals: 1,
@@ -406,7 +475,7 @@ export class PanelPage implements OnInit {
         this.canvasWaterTemp = new steelseries.DisplaySingle('canvasWaterTemp', {
             width: 200,
             height: 100,
-            unitString: "°",
+            unitString: "",
             unitStringVisible: true,
             headerString: "Water Temp.",
             lcdDecimals: 1,
@@ -417,7 +486,7 @@ export class PanelPage implements OnInit {
         this.canvasOut = new steelseries.DisplaySingle('canvasOut', {
             width: 200,
             height: 100,
-            unitString: "°",
+            unitString: "",
             unitStringVisible: true,
             headerString: "Out.Air.Temp",
             lcdDecimals: 1,
@@ -428,7 +497,7 @@ export class PanelPage implements OnInit {
         this.canvasInt = new steelseries.DisplaySingle('canvasInt', {
             width: 200,
             height: 100,
-            unitString: "%",
+            unitString: "",
             unitStringVisible: true,
             headerString: "Int-Humidity",
             lcdDecimals: 1,

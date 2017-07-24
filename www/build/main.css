@@ -25209,15 +25209,6 @@ ion-navbar.toolbar {
   opacity: 1 !important;
 }
 
-.scroll {
-  height: 100%;
-}
-
-#map {
-  height: 100%;
-  width: 100%;
-}
-
 .alert-head {
   overflow: auto;
 }

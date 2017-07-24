@@ -33,7 +33,7 @@ export class SignalK {
     window.localStorage.setItem('signalkServer', address);
     window.localStorage.setItem('signalkServerPath', path);
     let wsServerPath = 'ws://' + address + path +
-                       '?subscribe=all';
+                       '??stream=delta&context=self';  //subscribe=all';
     this.startWebsocketConnection(wsServerPath);
   }
 

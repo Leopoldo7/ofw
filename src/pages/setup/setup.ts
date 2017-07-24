@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, Input } from '@angular/core';
+import { NavController, Events } from 'ionic-angular';
 import { GeneralPage } from '../general/general';
 import { ServicesPage } from '../services/services';
 import {MetaPage} from '../meta/meta';
@@ -8,6 +8,9 @@ import {MapsPage} from '../maps/maps';
 import {ApplicationPage} from '../application/application';
 import {ToolsPage} from '../tools/tools';
 import {MasterPage} from '../master/master';
+import {ServerFormPage} from '../serverform/serverform';
+import { OnInit } from '@angular/core';
+import {SignalK} from '../signalk/signalk';
 
 @Component({
   selector: 'page-setup',
@@ -50,7 +53,7 @@ goToSetting(whoIs:string): void{
             break;
         }
         case 'Master': {
-            this.navCtr.push(MasterPage);
+            this.navCtr.push(ServerFormPage);
             break;
         }
         default : {

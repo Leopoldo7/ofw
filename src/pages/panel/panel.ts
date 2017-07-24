@@ -173,13 +173,10 @@ export class PanelPage implements OnInit {
                     this.canvasVMG.setValue(curr.value);
                 } 
 
-                else if(curr.path === "navigation.position.latitude"){ //Setta il primo valore del Display con due parametri
-                    this.canvasPosition.setValue(curr.value);
+                else if(curr.path === "navigation.position"){ //Setta il primo valore del Display con due parametri
+                    this.canvasPosition.setValue(curr.value.latitude);
+                    this.canvasPosition.setAltValue(curr.value.longitude)
                 }
-
-                else if(curr.path === "navigation.position.longitude"){ // Setta il secondo valore del Display con due parametri
-                    this.canvasPosition.setAltValue(curr.value +10)
-                } 
 
                 else if(curr.path === "navigation.courseOverGroundTrue"){
                     this.canvasCOG.setValue(curr.value);

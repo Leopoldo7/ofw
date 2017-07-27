@@ -18,7 +18,8 @@
     "src/typings/index.d.ts",
     "src/assets/libs/steelseries.js",
     "src/assets/libs/OpenLayers/js/ol.js",
-    "src/assets/libs/OpenLayers/css/ol.min.css"
+    "src/assets/libs/OpenLayers/css/ol.min.css",
+    "src/assets/libs/moment.js"
   ],
   "exclude": [
     "node_modules"

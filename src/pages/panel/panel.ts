@@ -5,6 +5,7 @@ import {SignalK} from '../signalk/signalk';
 import {ServerFormPage} from '../serverform/serverform';
 
 declare var steelseries:any;
+declare var moment:any;
 
 @Component({
   selector: 'page-panel',
@@ -243,7 +244,8 @@ export class PanelPage implements OnInit {
                 }
 
                 else if(curr.path === "navigation.datetime"){ 
-                    this.canvasTime.setValue(curr.value);
+                    if(moment(curr.value).isValid())
+                        this.canvasTime.setValue(moment(curr.value).format("DD/MM/YYYY HH:mm:ss"));
                 }
 
                 else if(curr.path === ""){ 
@@ -580,12 +582,12 @@ export class PanelPage implements OnInit {
         })
 
         this.canvasTime = new steelseries.DisplaySingle('canvasTime', {
-            width: 200,
+            width: 400,
             height: 100,
             unitString: "",
             unitStringVisible: true,
             headerString: "Time",
-            lcdDecimals: 1,
+            fontHeight: "40",
             headerStringVisible: true,
             valuesNumeric: false,
             lcdColor: steelseries.LcdColor.WHITE

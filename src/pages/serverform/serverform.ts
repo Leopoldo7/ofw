@@ -47,5 +47,6 @@ export class ServerFormPage {
 
   disconnettiWS(){
     this.signalk.closeConnection();
+    this.navCtrl.pop();
   }
 }

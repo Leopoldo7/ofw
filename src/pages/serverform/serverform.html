@@ -16,11 +16,11 @@
     </ion-item>
     <div *ngIf="serverAddress.hasError('required') &amp;&amp; serverAddress.touched" style='color: red; padding-left: 15px;'>Server address is required</div>
     <div style='padding-top: 25px;'>
-      <button ion-button (click)="onSubmit(authForm.value)" [disabled]="!authForm.valid" block color="primary" >Save</button><br/>
+      <button ion-button (click)="onSubmit(authForm.value)" [disabled]="!authForm.valid" block color="primary">Save</button><br/>
     </div>
-    <!--<div style='padding-top: 5px;'>
+    <div style='padding-top: 5px;'>
       <button ion-button (click)="disconnettiWS()" [disabled]="!signalk.connected" block color="accent" >Disconnetti</button><br/>
-    </div>-->
+    </div>
   </form>
 </ion-content>
 

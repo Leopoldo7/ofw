@@ -68,8 +68,11 @@ export class SignalK {
       });
 
       this.ws.onClose( () => {
-        this.connected = false;
-        this.ws.close(true);
+        
+        if(this.ws != null){
+          this.connected = false;
+          this.ws.close(true);
+        }
         // Upon close of connection, try to reconnect in 10 seconds
         //setTimeout( () => this.startWebsocketConnection(wsServerPath), 10000);
         this.events.publish('ws:close', 1);
@@ -92,7 +95,7 @@ export class SignalK {
 
   closeConnection(){
     if (this.ws != null) {
-      this.ws.close(false);
+      this.ws.close();
       this.ws = null;
       
       this.connected = false;

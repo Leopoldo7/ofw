@@ -36,13 +36,18 @@ export class MapsPage implements OnInit {
       });
 
   
-  public style = new ol.style.Style({
+  public selectDirection(feature, resolution): any{
+    console.info(feature.get("id"));
+    var markerImage = this.imageMarker;
+    var style = new ol.style.Style({
             image: new ol.style.Icon({
-              src: this.imageMarker,
+              src: markerImage,
               anchor: [0.5, 0.5],
               scale: 0.30
             })
       });
+  return style;
+  }
     
 
   public vectorSource = new ol.source.Vector({
@@ -51,7 +56,7 @@ export class MapsPage implements OnInit {
 
   public vectorLayerShip = new ol.layer.Vector({
         source: this.vectorSource,
-        style: this.style,
+        style: this.selectDirection.bind(this),
         title: "Ship Layer"
       });
 

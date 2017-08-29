@@ -31,9 +31,9 @@ export class MapsPage implements OnInit {
                           zoom: this.zoom
                         });
 
-  public geolocation = new ol.Geolocation({
+  /*public geolocation = new ol.Geolocation({
         tracking: true
-      });
+      });*/
 
   
   public selectDirection(feature, resolution): any{
@@ -96,7 +96,7 @@ export class MapsPage implements OnInit {
     });
 
     //Prende la posizione attuale
-    if(this.geolocation && this.geolocation.getTracking()){
+    /*if(this.geolocation && this.geolocation.getTracking()){
      
       var positionActual = this.geolocation.getPosition();
       
@@ -116,9 +116,9 @@ export class MapsPage implements OnInit {
           viewer.setCenter(ol.proj.transform([p[0],p[1]], fmProj, toProj));
           viewer.setZoom(zoommer);
         
-      });*/
+      });
 
-    }
+    }*/
 
 
   }

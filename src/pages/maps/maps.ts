@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { SignalK } from '../signalk/signalk';
 import { ServerFormPage } from '../serverform/serverform';
+import { ElementRef, ViewChild } from '@angular/core';
 
 
 declare var ol:any;
@@ -22,10 +23,21 @@ export class MapsPage implements OnInit {
    public maxMoviments:number = 200;
    public countMoviments:number = this.maxMoviments;
 
+  public wgs84Sphere = new ol.Sphere(6378137);
+  public source = new ol.source.Vector();
+  public output:any = "0";
+  public draw; 
+  public sketch:any;
+  public helpTooltipElement;
+  public helpTooltip;
+  public measureTooltipElement;
+  public measureTooltip;
+  public continuePolygonMsg = 'Click to continue drawing the polygon';
+  public continueLineMsg = 'Click to continue drawing the line';
+  @ViewChild("areaChk") areaChk: ElementRef;
+
    
    public features = new ol.Collection();
-
-
    public view:any = new ol.View({
                           center: ol.proj.transform([14.26824, 40.83033], this.fromProjection, this.toProjection),
                           zoom: this.zoom
@@ -76,9 +88,10 @@ export class MapsPage implements OnInit {
   ngOnInit(){
     this.initMap();
   }
-
-
+  
   initMap(){
+
+   // ol.inherits(this.myControl, ol.control.Control);
 
     this.map = new ol.Map({
         target: 'map',
@@ -91,10 +104,13 @@ export class MapsPage implements OnInit {
         view: this.view,
         controls: ol.control.defaults({}).extend([
                   new ol.control.ZoomSlider(),
-                  new ol.control.ScaleLine()
-                ]),
+                  new ol.control.ScaleLine(),
+                  new ol.control.MousePosition()
+                ])
     });
 
+    this.map.on('pointermove', this.pointerMoveHandler.bind(this));
+    this.addInteraction();
     //Prende la posizione attuale
     /*if(this.geolocation && this.geolocation.getTracking()){
      
@@ -161,9 +177,189 @@ export class MapsPage implements OnInit {
       }
   }
 
-
   obtainServerAddrManually() {
     this.navCtrl.push(ServerFormPage);
   }
+
+
+  changeStatus(evt){
+    this.addInteraction();
+  }
+ pointerMoveHandler(evt) {
+  if (evt.dragging) {
+    return;
+  }
+  /** @type {string} */
+  var helpMsg = 'Click to start drawing';
+  /** @type {ol.Coordinate|undefined} */
+  var tooltipCoord = evt.coordinate;
+  if (this.sketch) {
+    
+    var geom = (this.sketch.getGeometry());
+    if (geom instanceof ol.geom.Polygon) {
+      this.output = this.formatArea(/** @type {ol.geom.Polygon} */ (geom));
+      helpMsg = this.continuePolygonMsg;
+      tooltipCoord = geom.getInteriorPoint().getCoordinates();
+    } else if (geom instanceof ol.geom.LineString) {
+      this.output = this.formatLength( /** @type {ol.geom.LineString} */ (geom));
+      helpMsg = this.continueLineMsg;
+      tooltipCoord = geom.getLastCoordinate();
+    }
+    //this.measureTooltipElement.innerHTML = output;
+    //this.measureTooltip.setPosition(tooltipCoord);
+  }
+
+  //this.helpTooltipElement.innerHTML = helpMsg;
+  //this.helpTooltip.setPosition(evt.coordinate);
+};
+
+
+addInteraction() {
+  var isArea = false;
+  //this.areaChk.nativeElement.checked;
+  console.info("Is area?" + isArea);
+  var type =  ( isArea ? 'Polygon' : 'LineString' );
+  this.draw = new ol.interaction.Draw({
+    source: this.source,
+    type: /** @type {ol.geom.GeometryType} */ (type),
+    style: new ol.style.Style({
+      fill: new ol.style.Fill({
+        color: 'rgba(255, 255, 255, 0.2)'
+      }),
+      stroke: new ol.style.Stroke({
+        color: 'rgba(0, 0, 0, 0.5)',
+        lineDash: [10, 10],
+        width: 2
+      }),
+      image: new ol.style.Circle({
+        radius: 5,
+        stroke: new ol.style.Stroke({
+          color: 'rgba(0, 0, 0, 0.7)'
+        }),
+        fill: new ol.style.Fill({
+          color: 'rgba(255, 255, 255, 0.2)'
+        })
+      })
+    })
+  });
+
+
+  this.draw.on('drawstart',
+  function(evt) {
+        // set sketch
+        this.sketch = evt.feature;
+      }.bind(this));
+
+  this.draw.on('drawend',
+      function(evt) {
+        //this.measureTooltipElement.className = 'tooltip tooltip-static';
+        //this.measureTooltip.setOffset([0, -7]);
+        // unset sketch
+        this.sketch = null;
+        this.output = "0";
+        // unset tooltip so that a new one can be created
+        //this.measureTooltipElement = null;
+        //this.createMeasureTooltip();
+      }.bind(this));
+
+  this.map.addInteraction(this.draw);
+
+  //this.createMeasureTooltip();
+  //this.createHelpTooltip();
+
+  
+}
+
+
+/**
+ * Creates a new help tooltip
+ */
+createHelpTooltip() {
+  if (this.helpTooltipElement) {
+    this.helpTooltipElement.parentNode.removeChild(this.helpTooltipElement);
+  }
+  this.helpTooltipElement = document.createElement('div');
+  this.helpTooltipElement.className = 'tooltip';
+  this.helpTooltip = new ol.Overlay({
+    element: this.helpTooltipElement,
+    offset: [15, 0],
+    positioning: 'center-left'
+  });
+  this.map.addOverlay(this.helpTooltip);
+}
+
+
+/**
+ * Creates a new measure tooltip
+ */
+ createMeasureTooltip() {
+  if (this.measureTooltipElement) {
+    this.measureTooltipElement.parentNode.removeChild(this.measureTooltipElement);
+  }
+  this.measureTooltipElement = document.createElement('div');
+  this.measureTooltipElement.className = 'tooltip tooltip-measure';
+  this.measureTooltip = new ol.Overlay({
+    element: this.measureTooltipElement,
+    offset: [0, -15],
+    positioning: 'bottom-center'
+  });
+  this.map.addOverlay(this.measureTooltip);
+}
+
+
+/**
+ * format length output
+ * @param {ol.geom.LineString} line
+ * @return {string}
+ */
+formatLength(line) {
+  var length;
+  this.output = "0";
+  
+    var coordinates = line.getCoordinates();
+    length = 0;
+    var sourceProj = this.map.getView().getProjection();
+    for (var i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+      var c1 = ol.proj.transform(coordinates[i], sourceProj, 'EPSG:4326');
+      var c2 = ol.proj.transform(coordinates[i + 1], sourceProj, 'EPSG:4326');
+      length += this.wgs84Sphere.haversineDistance(c1, c2);
+    }
+  
+  if (length > 100) {
+    this.output = (Math.round(length / 1000 * 100) / 100) +
+        ' ' + 'km';
+  } else {
+    this.output = (Math.round(length * 100) / 100) +
+        ' ' + 'm';
+  }
+  return this.output;
+};
+
+
+/**
+ * format length output
+ * @param {ol.geom.Polygon} polygon
+ * @return {string}
+ */
+formatArea(polygon) {
+  var area;
+  this.output = "0";
+
+    var sourceProj = this.map.getView().getProjection();
+    var geom = /** @type {ol.geom.Polygon} */(polygon.clone().transform(
+        sourceProj, 'EPSG:4326'));
+    var coordinates = geom.getLinearRing(0).getCoordinates();
+    area = Math.abs(this.wgs84Sphere.geodesicArea(coordinates));
+
+  if (area > 10000) {
+    this.output = (Math.round(area / 1000000 * 100) / 100) +
+        ' ' + 'km<sup>2</sup>';
+  } else {
+    this.output = (Math.round(area * 100) / 100) +
+        ' ' + 'm<sup>2</sup>';
+  }
+  return this.output;
+};
+
 
 }

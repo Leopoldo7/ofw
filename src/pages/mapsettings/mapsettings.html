@@ -1,0 +1,19 @@
+<ion-content><ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Maps Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-label>Unità di misura</ion-label>
+        <ion-select [(ngModel)]="selectedUnit" (ionChange)="setSettings($event)" >
+          <ion-option value="meters">Metri</ion-option>
+          <ion-option value="miles">Miglia</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    
+
+  </ion-content>

@@ -4,6 +4,7 @@ import { Events } from 'ionic-angular';
 import { SignalK } from '../signalk/signalk';
 import { ServerFormPage } from '../serverform/serverform';
 import { ElementRef, ViewChild } from '@angular/core';
+import * as Settings from '../setup/settings';
 
 
 declare var ol:any;
@@ -322,16 +323,21 @@ formatLength(line) {
     for (var i = 0, ii = coordinates.length - 1; i < ii; ++i) {
       var c1 = ol.proj.transform(coordinates[i], sourceProj, 'EPSG:4326');
       var c2 = ol.proj.transform(coordinates[i + 1], sourceProj, 'EPSG:4326');
-      length += this.wgs84Sphere.haversineDistance(c1, c2);
+      length += this.wgs84Sphere.haversineDistance(c1, c2); //Return meter
     }
-  
-  if (length > 100) {
-    this.output = (Math.round(length / 1000 * 100) / 100) +
-        ' ' + 'km';
-  } else {
-    this.output = (Math.round(length * 100) / 100) +
-        ' ' + 'm';
+
+  if(Settings.settings.measureUnit == "meters"){
+    if (length > 100) {
+      this.output = (Math.round(length / 1000 * 100) / 100) +
+          ' ' + 'km';
+    } else {
+      this.output = (Math.round(length * 100) / 100) +
+          ' ' + 'm';
+    }
+  } else if(Settings.settings.measureUnit == "miles") {
+      this.output = (length * 0.000621371).toFixed(2) + '' + ' miglia';
   }
+
   return this.output;
 };
 

@@ -24,6 +24,7 @@ import { SensorPage } from '../pages/sensor/sensor';
 import { SignalK } from '../pages/signalk/signalk';
 import { ServerFormPage } from '../pages/serverform/serverform';
 import { MasterPage } from '../pages/master/master';
+import { MapSettingsPage } from '../pages/mapsettings/mapsettings';
 
 import {RadialGaugeComponent, LinearGaugeComponent} from '../../node_modules/ng-canvas-gauges/component';
 
@@ -51,7 +52,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     ServerFormPage,
     RadialGaugeComponent,
-    MasterPage
+    MasterPage,
+    MapSettingsPage
   ],
   imports: [
     BrowserModule, FormsModule, Ng2OdometerModule,
@@ -77,7 +79,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SensorPage,
     TabsPage,
     ServerFormPage,
-    MasterPage
+    MasterPage,
+    MapSettingsPage
   ],
   providers: [
     StatusBar,

@@ -10,7 +10,8 @@ import {ToolsPage} from '../tools/tools';
 import {MasterPage} from '../master/master';
 import {ServerFormPage} from '../serverform/serverform';
 import { OnInit } from '@angular/core';
-import {SignalK} from '../signalk/signalk';
+import { SignalK } from '../signalk/signalk';
+import { MapSettingsPage } from '../mapsettings/mapsettings';
 
 @Component({
   selector: 'page-setup',
@@ -41,7 +42,7 @@ goToSetting(whoIs:string): void{
             break;
         }
         case 'Maps': {
-            this.navCtr.push(MapsPage);
+            this.navCtr.push(MapSettingsPage);
             break;
         }
         case 'Application': {

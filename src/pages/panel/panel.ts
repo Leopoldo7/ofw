@@ -172,39 +172,46 @@ export class PanelPage implements OnInit {
                 if(curr.path === "navigation.speedOverGround"){ 
                     this.canvasSOG.setValue(curr.value); 
                     this.canvasVMG.setValue(curr.value);
+                    this.canvasCOGSOG.setAltValue(curr.value);
+                    this.canvasSOGCOG.setAltValue(curr.value);
                 } 
 
                 else if(curr.path === "navigation.position"){ //Setta il primo valore del Display con due parametri
-                    this.canvasPosition.setValue(curr.value.latitude);
-                    this.canvasPosition.setAltValue(curr.value.longitude)
+                    this.canvasPosition.setValue(curr.value.latitude); 
+                    this.canvasPosition.setAltValue(curr.value.longitude);
                 }
 
                 else if(curr.path === "navigation.courseOverGroundTrue"){
                     this.canvasCOG.setValue(curr.value);
+                    this.canvasCOGSOG.setValue(curr.value);
+                    this.canvasSOGCOG.setValue(curr.value);
                 } 
 
-                else if(curr.path === "depth.belowTransducer"){ //Setta Depth
+                else if(curr.path === "environment.depth.belowTransducer"){ //Setta Depth
                     this.canvasDepth.setValue(curr.value);
                     this.canvasDEP.setValue(curr.value);
                     this.canvasDP.setValue(curr.value);
                 }
 
-                else if(curr.path === "navigation.headingMagnetic"){ 
+                else if(curr.path === "navigation.headingTrue"){ //Problema con angolo
                     this.canvasHeading.setValue(curr.value);
                     this.canvasHEA.setValue(curr.value);
+                    this.canvasHEAD.setValue(curr.value);
                 }
 
                 else if(curr.path === "environment.wind.speedApparent"){ 
                     this.canvasSpeed.setValue(curr.value);
                     this.canvasAws.setValue(curr.value);
+                    this.canvasAWDS.setValue(curr.value);
                 }
 
-                else if(curr.path === "environment.wind.angleApparent"){ 
+                else if(curr.path === "environment.wind.angleApparent"){ //Problema con angolo
                     this.canvasAwa.setValue(curr.value);
                     this.canvasGroundWind.setValue(curr.value);
+                    this.canvasAWDS.setAltValue(curr.value);
                 }
 
-                else if(curr.path === "environment.wind.directionChangeAlarm"){ 
+                else if(curr.path === "environment.wind.directionChangeAlarm"){ //Path non trovato
                     this.canvasTwd.setValue(curr.value);
                     this.canvasTD.setValue(curr.value);
                 }
@@ -214,7 +221,7 @@ export class PanelPage implements OnInit {
                     this.canvasTS.setValue(curr.value);
                 }
 
-                else if(curr.path === ""){ //Setta AirPres
+                else if(curr.path === ""){  //Path non trovato
                     this.canvasAirPres.setValue(curr.value);
                 }
 
@@ -222,24 +229,21 @@ export class PanelPage implements OnInit {
                     this.canvasWindChill.setValue(curr.value);
                     this.canvasWaterTemp.setValue(curr.value);
                     this.canvasInt.setValue(curr.value);
-                    this.canvasCOGSOG.setValue(curr.value);
-                    this.canvasLiveWell.setValue(curr.value);
-                    this.canvasWpt.setValue(curr.value);
+                    this.canvasLiveWell.setValue(curr.value); //Non sappiamo dove piazzarlo
+                    this.canvasWpt.setValue(curr.value); //Non sappiamo dove piazzarlo
                     this.canvasDrift.setValue(curr.value);
                     this.canvasWT.setValue(curr.value);
-                    this.canvasSOGCOG.setValue(curr.value);
                 }
 
-                else if(curr.path === "environment.outside.temperature"){
+                else if(curr.path === "environment.outside.temperature"){ //Path non trovato
                     this.canvasOut.setValue(curr.value);
                 }
 
-                else if(curr.path === "navigation.racing.timePortDown"){
+                else if(curr.path === "navigation.racing.timePortDown"){ //Path non trovato
                     this.canvasSet.setValue(curr.value);
                 }
 
-                else if(curr.path === "steering.autopilot.target.headingMagnetic"){ 
-                    this.canvasHEAD.setValue(curr.value);
+                else if(curr.path === "steering.autopilot.target.headingMagnetic"){
                     this.canvasHD.setValue(curr.value);
                 }
 
@@ -276,7 +280,7 @@ export class PanelPage implements OnInit {
       this.canvasSOG = new steelseries.DisplaySingle('canvasSOG', {
                width: 200,
                height: 100,
-               unitString: "",
+               unitString: "m/s",
                unitStringVisible: true,
                headerString: "SOG",
                lcdDecimals: 1,
@@ -298,7 +302,7 @@ export class PanelPage implements OnInit {
       this.canvasDepth = new steelseries.DisplaySingle('canvasDepth', {
                width: 200,
                height: 100,
-               unitString: "",
+               unitString: "m",
                unitStringVisible: true,
                headerString: "Depth",
                lcdDecimals: 1,
@@ -320,9 +324,9 @@ export class PanelPage implements OnInit {
       this.canvasSpeed = new steelseries.DisplaySingle('canvasSpeed', {
                width: 200,
                height: 100,
-               unitString: "",
+               unitString: "m/s",
                unitStringVisible: true,
-               headerString: "Speed",
+               headerString: "Speed Wind",
                lcdDecimals: 1,
                headerStringVisible: true,
                lcdColor: steelseries.LcdColor.WHITE
@@ -342,7 +346,7 @@ export class PanelPage implements OnInit {
       this.canvasAws = new steelseries.DisplaySingle('canvasAws', {
                width: 200,
                height: 100,
-               unitString: "",
+               unitString: "m/s",
                unitStringVisible: true,
                headerString: "Aws",
                lcdDecimals: 1,
@@ -364,7 +368,7 @@ export class PanelPage implements OnInit {
       this.canvasTws = new steelseries.DisplaySingle('canvasTws', {
                width: 200,
                height: 100,
-               unitString: "",
+               unitString: "m/s",
                unitStringVisible: true,
                headerString: "TWS",
                lcdDecimals: 1,
@@ -377,7 +381,7 @@ export class PanelPage implements OnInit {
             height: 100,
             unitString: "",
             unitStringVisible: true,
-            headerString: "HEADING(m)",
+            headerString: "HEADING",
             lcdDecimals: 1,
             headerStringVisible: true,
             lcdColor: steelseries.LcdColor.WHITE
@@ -397,7 +401,7 @@ export class PanelPage implements OnInit {
         this.canvasTS = new steelseries.DisplaySingle('canvasTS', {
             width: 200,
             height: 100,
-            unitString: "",
+            unitString: "m/s",
             unitStringVisible: true,
             headerString: "TWS",
             lcdDecimals: 1,
@@ -408,7 +412,7 @@ export class PanelPage implements OnInit {
         this.canvasVMG = new steelseries.DisplaySingle('canvasVMG', {
             width: 200,
             height: 100,
-            unitString: "",
+            unitString: "m/s",
             unitStringVisible: true,
             headerString: "VMG",
             lcdDecimals: 1,
@@ -441,7 +445,7 @@ export class PanelPage implements OnInit {
       this.canvasWindChill = new steelseries.DisplaySingle('canvasWindChill', {
                width: 200,
                height: 100,
-               unitString: "",
+               unitString: "K",
                unitStringVisible: true,
                headerString: "T.WindChillTemp.",
                lcdDecimals: 1,
@@ -449,10 +453,10 @@ export class PanelPage implements OnInit {
                lcdColor: steelseries.LcdColor.WHITE
             });
 
-      this.canvasAWDS = new steelseries.DisplaySingle('canvasAWDS', {
+      this.canvasAWDS = new steelseries.DisplayMulti('canvasAWDS', {
                width: 200,
                height: 100,
-               unitString: "",
+               unitString: "m/s",
                unitStringVisible: true,
                headerString: "AWD(t)/AWS",
                lcdDecimals: 1,
@@ -474,7 +478,7 @@ export class PanelPage implements OnInit {
         this.canvasWaterTemp = new steelseries.DisplaySingle('canvasWaterTemp', {
             width: 200,
             height: 100,
-            unitString: "",
+            unitString: "K",
             unitStringVisible: true,
             headerString: "Water Temp.",
             lcdDecimals: 1,
@@ -496,7 +500,7 @@ export class PanelPage implements OnInit {
         this.canvasInt = new steelseries.DisplaySingle('canvasInt', {
             width: 200,
             height: 100,
-            unitString: "",
+            unitString: "K",
             unitStringVisible: true,
             headerString: "Int-Humidity",
             lcdDecimals: 1,
@@ -507,7 +511,7 @@ export class PanelPage implements OnInit {
         this.canvasCOGSOG = new steelseries.DisplayMulti('canvasCOGSOG', {
                width: 250,
                height: 100,
-               unitString: "",
+               unitString: "m/s",
                unitStringVisible: true,
                headerString: "COG SOG",
                lcdDecimals: 1,
@@ -518,9 +522,9 @@ export class PanelPage implements OnInit {
         this.canvasHEAD = new steelseries.DisplaySingle('canvasHEAD', {
                width: 200,
                height: 100,
-               unitString: "m",
+               unitString: "",
                unitStringVisible: true,
-               headerString: "Heading(m)",
+               headerString: "Heading",
                lcdDecimals: 1,
                headerStringVisible: true,
                lcdColor: steelseries.LcdColor.WHITE
@@ -529,7 +533,7 @@ export class PanelPage implements OnInit {
         this.canvasDEP = new steelseries.DisplaySingle('canvasDEP', {
                width: 250,
                height: 100,
-               unitString: "",
+               unitString: "m",
                unitStringVisible: true,
                headerString: "Depth(Transducer)",
                lcdDecimals: 1,
@@ -573,7 +577,7 @@ export class PanelPage implements OnInit {
         this.canvasWT = new steelseries.DisplaySingle('canvasWT', {
             width: 200,
             height: 100,
-            unitString: "°",
+            unitString: "K",
             unitStringVisible: true,
             headerString: "Water Temp.",
             lcdDecimals: 1,
@@ -593,21 +597,21 @@ export class PanelPage implements OnInit {
             lcdColor: steelseries.LcdColor.WHITE
         })
 
-        this.canvasSOGCOG = new steelseries.DisplaySingle('canvasSOGCOG', {
+        this.canvasSOGCOG = new steelseries.DisplayMulti('canvasSOGCOG', {
             width: 200,
             height: 100,
-            unitString: "",
+            unitString: "m/s",
             unitStringVisible: true,
-            headerString: "COG SOG(t)",
+            headerString: "COG SOG",
             lcdDecimals: 1,
             headerStringVisible: true,
             lcdColor: steelseries.LcdColor.WHITE
         })
 
-        this.canvasDP = new steelseries.DisplayMulti('canvasDP', {
+        this.canvasDP = new steelseries.DisplaySingle('canvasDP', {
             width: 200,
             height: 100,
-            unitString: "",
+            unitString: "m",
             unitStringVisible: true,
             headerString: "Depth",
             lcdDecimals: 1,

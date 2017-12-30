@@ -148,6 +148,7 @@ export class PanelPage implements OnInit {
               for(var k in json.updates[i].values){
                 var curr = json.updates[i].values[k];
                 if(curr.path === "environment.wind.speedApparent"){
+                    curr.value = curr.value * (180/Math.PI);
                     this.canvasGaugesPress = curr.value;
                 } 
               }
@@ -182,6 +183,7 @@ export class PanelPage implements OnInit {
                 }
 
                 else if(curr.path === "navigation.courseOverGroundTrue"){
+                    curr.value = curr.value * (180/Math.PI);
                     this.canvasCOG.setValue(curr.value);
                     this.canvasCOGSOG.setValue(curr.value);
                     this.canvasSOGCOG.setValue(curr.value);
@@ -205,7 +207,8 @@ export class PanelPage implements OnInit {
                     this.canvasAWDS.setValue(curr.value);
                 }
 
-                else if(curr.path === "environment.wind.angleApparent"){ //Problema con angolo
+                else if(curr.path === "environment.wind.angleApparent"){
+                    curr.value = curr.value * (180/Math.PI);
                     this.canvasAwa.setValue(curr.value);
                     this.canvasGroundWind.setValue(curr.value);
                     this.canvasAWDS.setAltValue(curr.value);
@@ -291,7 +294,7 @@ export class PanelPage implements OnInit {
       this.canvasCOG = new steelseries.DisplaySingle('canvasCOG', {
                width: 200,
                height: 100,
-               unitString: "",
+               unitString: "°",
                unitStringVisible: true,
                headerString: "COG",
                lcdDecimals: 1,
@@ -335,7 +338,7 @@ export class PanelPage implements OnInit {
       this.canvasAwa = new steelseries.DisplaySingle('canvasAwa', {
                width: 200,
                height: 100,
-               unitString: "",
+               unitString: "°",
                unitStringVisible: true,
                headerString: "Awa",
                lcdDecimals: 1,
@@ -511,7 +514,7 @@ export class PanelPage implements OnInit {
         this.canvasCOGSOG = new steelseries.DisplayMulti('canvasCOGSOG', {
                width: 250,
                height: 100,
-               unitString: "m/s",
+               unitString: "°",
                unitStringVisible: true,
                headerString: "COG SOG",
                lcdDecimals: 1,
@@ -600,7 +603,7 @@ export class PanelPage implements OnInit {
         this.canvasSOGCOG = new steelseries.DisplayMulti('canvasSOGCOG', {
             width: 200,
             height: 100,
-            unitString: "m/s",
+            unitString: "°",
             unitStringVisible: true,
             headerString: "COG SOG",
             lcdDecimals: 1,

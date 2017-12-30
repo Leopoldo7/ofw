@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
 import {Slides} from 'ionic-angular';
 import {ViewChild} from '@angular/core';
+import * as Settings from '../setup/settings';
 
 @Component({
   selector: 'page-home',
@@ -14,6 +15,8 @@ export class HomePage {
   public navCtr: NavController,
     public alertCtrl: AlertController
   ) {}
+
+  public path:string  = Settings.settings.prodUrl;
 
   showRun() {
     let alert = this.alertCtrl.create({

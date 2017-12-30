@@ -16,13 +16,13 @@ declare var ol:any;
 })
 export class MapsPage implements OnInit {
 
-   public map:any;
-   public zoom:number = 13;
-   public imageMarker:string = 'assets/img/maps/ship.png';
-   public fromProjection:string = "EPSG:4326";
-   public toProjection:string = "EPSG:3857";
-   public maxMoviments:number = 200;
-   public countMoviments:number = this.maxMoviments;
+  public map:any;
+  public zoom:number = 13;
+  public imageMarker:string = 'assets/img/maps/ship.png';
+  public fromProjection:string = "EPSG:4326";
+  public toProjection:string = "EPSG:3857";
+  public maxMoviments:number = 200;
+  public countMoviments:number = this.maxMoviments;
 
   public wgs84Sphere = new ol.Sphere(6378137);
   public source = new ol.source.Vector();
@@ -38,8 +38,8 @@ export class MapsPage implements OnInit {
   @ViewChild("areaChk") areaChk: ElementRef;
 
    
-   public features = new ol.Collection();
-   public view:any = new ol.View({
+  public features = new ol.Collection();
+  public view:any = new ol.View({
                           center: ol.proj.transform([14.26824, 40.83033], this.fromProjection, this.toProjection),
                           zoom: this.zoom
                         });

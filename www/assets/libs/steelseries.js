@@ -5838,6 +5838,7 @@ var steelseries = (function () {
             value = (undefined === parameters.value ? 0 : parameters.value),
             alwaysScroll = (undefined === parameters.alwaysScroll ? false : parameters.alwaysScroll),
             autoScroll = (undefined === parameters.autoScroll ? false : parameters.autoScroll),
+            fontHeight = (undefined === parameters.fontHeight ? false : parameters.fontHeight),
             section = (undefined === parameters.section ? null : parameters.section);
 
         var scrolling = false;
@@ -5865,7 +5866,7 @@ var steelseries = (function () {
         var imageHeight = height;
         var textWidth = 0;
 
-        var fontHeight = Math.floor(imageHeight / 1.5);
+        var fontHeight = fontHeight ? fontHeight :  Math.floor(imageHeight / 1.5);
         var stdFont = fontHeight + 'px ' + stdFontName;
         var lcdFont = fontHeight + 'px ' + lcdFontName;
 
